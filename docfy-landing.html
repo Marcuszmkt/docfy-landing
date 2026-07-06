@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DocFy: crie documentos profissionais em minutos</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#060911;
+    --surface:#0d1220;
+    --surface-2:#131a2c;
+    --border:#1c2438;
+    --accent:#0071e3;
+    --accent-light:#4da3ff;
+    --text:#f5f7fa;
+    --muted:#8b93a7;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .font-display{font-family:'Space Grotesk',sans-serif;}
+  .font-mono{font-family:'IBM Plex Mono',monospace;}
+
+  .glow-radial{
+    background:radial-gradient(circle at 50% 30%, rgba(0,113,227,0.25), transparent 60%);
+  }
+
+  /* Signature element: dog-eared corner, echoing the DocFy logo fold */
+  .fold-card{
+    position:relative;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:14px;
+    overflow:hidden;
+  }
+  .fold-card::before{
+    content:"";
+    position:absolute;
+    top:0; right:0;
+    width:0; height:0;
+    border-style:solid;
+    border-width:0 26px 26px 0;
+    border-color:transparent var(--accent) transparent transparent;
+    opacity:0.9;
+    transition:transform .25s ease;
+  }
+  .fold-card:hover::before{ transform:scale(1.15); }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    font-size:0.72rem;
+    color:var(--accent-light);
+  }
+
+  .btn-primary{
+    background:linear-gradient(180deg,#1d84ec,#0060c4);
+    box-shadow:0 8px 24px rgba(0,113,227,0.35), inset 0 1px 0 rgba(255,255,255,0.15);
+  }
+  .btn-primary:hover{ box-shadow:0 10px 30px rgba(0,113,227,0.5), inset 0 1px 0 rgba(255,255,255,0.2); }
+
+  .reveal{ opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  .grid-lines{
+    background-image:
+      linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size:44px 44px;
+  }
+
+  .price-highlight{
+    border-color:var(--accent) !important;
+    box-shadow:0 0 0 1px var(--accent), 0 20px 50px rgba(0,113,227,0.25);
+  }
+
+  details > summary{ list-style:none; cursor:pointer; }
+  details > summary::-webkit-details-marker{ display:none; }
+  .chev{ transition:transform .25s ease; }
+  details[open] .chev{ transform:rotate(45deg); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="sticky top-0 z-50 backdrop-blur-md bg-[#060911]/80 border-b border-[var(--border)]">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <svg width="26" height="26" viewBox="0 0 48 48" fill="none">
+        <path d="M12 6C10.3431 6 9 7.34315 9 9V39C9 40.6569 10.3431 42 12 42H36C37.6569 42 39 40.6569 39 39V17L28 6H12Z" stroke="white" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M28 6V13C28 15.2091 29.7909 17 32 17H39L28 6Z" fill="#0071E3"/>
+        <line x1="15" y1="24" x2="30" y2="24" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="15" y1="30" x2="30" y2="30" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+      <span class="font-display font-bold text-lg">Doc<span class="text-[var(--accent)]">Fy</span></span>
+    </div>
+    <a href="#precos" class="btn-primary text-sm font-semibold px-5 py-2.5 rounded-full text-white">Começar agora</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="relative overflow-hidden grid-lines">
+  <div class="glow-radial absolute inset-0"></div>
+  <div class="max-w-6xl mx-auto px-6 pt-20 pb-24 relative grid md:grid-cols-2 gap-14 items-center">
+    <div class="reveal">
+      <p class="eyebrow mb-4">gerador de documentos pdf</p>
+      <h1 class="font-display font-bold text-4xl md:text-5xl leading-tight mb-6">
+        Documentos que parecem ter saído de uma agência.<br>
+        <span class="text-[var(--accent-light)]">Feitos por você, em minutos.</span>
+      </h1>
+      <p class="text-[var(--muted)] text-lg mb-8 max-w-md">
+        Propostas, relatórios e materiais com identidade visual premium,
+        sem contratar designer e sem lutar com o Word.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a href="#precos" class="btn-primary text-white font-semibold px-6 py-3.5 rounded-full">Criar meu primeiro documento</a>
+        <a href="#solucao" class="border border-[var(--border)] text-[var(--text)] font-medium px-6 py-3.5 rounded-full hover:border-[var(--accent)] transition">Ver como funciona</a>
+      </div>
+      <div class="flex items-center gap-2 mt-8 text-sm text-[var(--muted)]">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4" stroke="#4da3ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="#4da3ff" stroke-width="2"/></svg>
+        Garantia de 7 dias, sem risco
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="fold-card p-3">
+        <div class="bg-white rounded-lg p-6 aspect-[3/4] max-w-xs mx-auto flex flex-col">
+          <div class="inline-block self-start bg-[var(--accent)] text-white text-[10px] font-bold font-mono px-3 py-1 rounded-full mb-4">DOCUMENTO PROFISSIONAL</div>
+          <h3 class="text-black font-display font-bold text-2xl leading-tight mb-2">Proposta<br>Comercial</h3>
+          <div class="h-0.5 w-16 bg-[var(--accent)] mb-3"></div>
+          <p class="text-gray-500 text-xs mb-4">Solução completa para impulsionar seu negócio</p>
+          <div class="text-gray-400 text-[10px] font-mono mb-1">APRESENTAÇÃO</div>
+          <div class="space-y-1.5">
+            <div class="h-1.5 bg-gray-100 rounded w-full"></div>
+            <div class="h-1.5 bg-gray-100 rounded w-5/6"></div>
+            <div class="h-1.5 bg-gray-100 rounded w-3/4"></div>
+          </div>
+          <div class="mt-auto text-[10px] text-gray-400">Elaborado por <span class="font-semibold text-gray-600">DocFy</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMA -->
+<section class="max-w-6xl mx-auto px-6 py-20">
+  <div class="reveal max-w-2xl mb-14">
+    <p class="eyebrow mb-3">o problema</p>
+    <h2 class="font-display font-bold text-3xl md:text-4xl leading-tight">
+      Você sabe o que fazer.<br>O documento é que não ajuda.
+    </h2>
+  </div>
+  <div class="grid md:grid-cols-3 gap-5">
+    <div class="reveal fold-card p-6">
+      <div class="font-mono text-[var(--accent-light)] text-xs mb-3">SEM DESIGNER</div>
+      <p class="text-[var(--muted)]">Word e Google Docs entregam o conteúdo certo, mas com a cara errada: genérica, datada, sem identidade.</p>
+    </div>
+    <div class="reveal fold-card p-6">
+      <div class="font-mono text-[var(--accent-light)] text-xs mb-3">SEM TEMPO</div>
+      <p class="text-[var(--muted)]">Montar um layout do zero no Canva ou InDesign toma horas que você não tem entre um cliente e outro.</p>
+    </div>
+    <div class="reveal fold-card p-6">
+      <div class="font-mono text-[var(--accent-light)] text-xs mb-3">SEM CONSISTÊNCIA</div>
+      <p class="text-[var(--muted)]">Cada proposta fica diferente da anterior, e sua marca nunca parece a mesma duas vezes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUÇÃO -->
+<section id="solucao" class="max-w-6xl mx-auto px-6 py-20 border-t border-[var(--border)]">
+  <div class="grid md:grid-cols-2 gap-14 items-center">
+    <div class="reveal order-2 md:order-1">
+      <div class="fold-card p-3">
+        <img src="https://placehold.co/900x560/0d1220/1c2438?text=" class="rounded-lg w-full opacity-0 absolute" alt="">
+        <div class="bg-[#0a0e1a] rounded-lg p-4 border border-[var(--border)]">
+          <div class="flex items-center gap-2 mb-4 pb-3 border-b border-[var(--border)]">
+            <div class="w-2.5 h-2.5 rounded-full bg-[#ff5f57]"></div>
+            <div class="w-2.5 h-2.5 rounded-full bg-[#febc2e]"></div>
+            <div class="w-2.5 h-2.5 rounded-full bg-[#28c840]"></div>
+          </div>
+          <div class="grid grid-cols-3 gap-3">
+            <div class="col-span-1 space-y-2">
+              <div class="text-[10px] font-mono text-[var(--muted)] mb-2">CAPA</div>
+              <div class="h-6 bg-[var(--surface-2)] rounded"></div>
+              <div class="h-6 bg-[var(--surface-2)] rounded"></div>
+              <div class="h-6 bg-[var(--surface-2)] rounded"></div>
+              <div class="text-[10px] font-mono text-[var(--muted)] mt-3 mb-2">DESIGN</div>
+              <div class="h-6 bg-[var(--surface-2)] rounded"></div>
+            </div>
+            <div class="col-span-2 bg-white rounded p-4">
+              <div class="inline-block bg-[var(--accent)] text-white text-[8px] font-bold px-2 py-0.5 rounded-full mb-2">MÉTODO COMPROVADO</div>
+              <div class="h-3 bg-gray-800 rounded w-3/4 mb-2"></div>
+              <div class="h-3 bg-gray-800 rounded w-1/2 mb-3"></div>
+              <div class="h-1 bg-gray-100 rounded w-full mb-1"></div>
+              <div class="h-1 bg-gray-100 rounded w-full mb-1"></div>
+              <div class="h-1 bg-gray-100 rounded w-5/6"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal order-1 md:order-2">
+      <p class="eyebrow mb-3">a solução</p>
+      <h2 class="font-display font-bold text-3xl md:text-4xl leading-tight mb-5">
+        Escolha um template.<br>Escreva o conteúdo.<br>Baixe o PDF.
+      </h2>
+      <p class="text-[var(--muted)] text-lg mb-6">
+        O DocFy cuida da parte visual (tipografia, espaçamento, cores, capa),
+        enquanto você foca só no que precisa dizer.
+      </p>
+      <ul class="space-y-3 font-mono text-sm text-[var(--muted)]">
+        <li class="flex gap-3"><span class="text-[var(--accent-light)]">01</span> Preencha título, autor e descrição</li>
+        <li class="flex gap-3"><span class="text-[var(--accent-light)]">02</span> Escreva as seções em Markdown simples</li>
+        <li class="flex gap-3"><span class="text-[var(--accent-light)]">03</span> Gere e baixe seu PDF pronto</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="max-w-6xl mx-auto px-6 py-20 border-t border-[var(--border)]">
+  <div class="reveal max-w-2xl mb-14">
+    <p class="eyebrow mb-3">o que vem incluso</p>
+    <h2 class="font-display font-bold text-3xl md:text-4xl leading-tight">Tudo que uma proposta precisa para parecer séria</h2>
+  </div>
+  <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+    <div class="reveal fold-card p-6">
+      <h3 class="font-display font-semibold text-lg mb-2">8+ templates</h3>
+      <p class="text-[var(--muted)] text-sm">De minimalista a editorial, um estilo para cada tipo de cliente.</p>
+    </div>
+    <div class="reveal fold-card p-6">
+      <h3 class="font-display font-semibold text-lg mb-2">Sua marca</h3>
+      <p class="text-[var(--muted)] text-sm">Logo, cores e assinatura próprios em cada documento gerado.</p>
+    </div>
+    <div class="reveal fold-card p-6">
+      <h3 class="font-display font-semibold text-lg mb-2">Editor simples</h3>
+      <p class="text-[var(--muted)] text-sm">Markdown direto, sem curva de aprendizado de editor complexo.</p>
+    </div>
+    <div class="reveal fold-card p-6">
+      <h3 class="font-display font-semibold text-lg mb-2">Funciona no celular</h3>
+      <p class="text-[var(--muted)] text-sm">Edite e gere documentos de qualquer lugar, sem precisar do notebook.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PREÇOS -->
+<section id="precos" class="max-w-6xl mx-auto px-6 py-20 border-t border-[var(--border)]">
+  <div class="reveal text-center max-w-xl mx-auto mb-14">
+    <p class="eyebrow mb-3">investimento</p>
+    <h2 class="font-display font-bold text-3xl md:text-4xl leading-tight mb-3">Preço de fundador: nunca mais tão barato</h2>
+    <p class="text-[var(--muted)]">Suporte direto liberado por tempo limitado para quem entra agora.</p>
+  </div>
+  <div class="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+    <div class="reveal fold-card p-8">
+      <div class="eyebrow mb-2">mensal</div>
+      <div class="font-display font-bold text-4xl mb-1">R$19,90<span class="text-base text-[var(--muted)] font-normal">/mês</span></div>
+      <p class="text-[var(--muted)] text-sm mb-6">Flexível, cancele quando quiser</p>
+      <a href="https://pay.kiwify.com.br/fL9qqtY" class="block text-center border border-[var(--border)] hover:border-[var(--accent)] transition font-semibold py-3 rounded-full">Assinar mensal</a>
+    </div>
+    <div class="reveal fold-card price-highlight p-8 relative">
+      <div class="absolute -top-3 right-6 bg-[var(--accent)] text-white text-[10px] font-mono font-bold px-3 py-1 rounded-full">MAIS ESCOLHIDO</div>
+      <div class="eyebrow mb-2">trimestral</div>
+      <div class="font-display font-bold text-4xl mb-1">R$37<span class="text-base text-[var(--muted)] font-normal">/trimestre</span></div>
+      <p class="text-[var(--muted)] text-sm mb-6">Economize comparado ao mensal</p>
+      <a href="https://pay.kiwify.com.br/AY1anqT" class="block text-center btn-primary text-white font-semibold py-3 rounded-full">Assinar trimestral</a>
+    </div>
+  </div>
+  <div class="reveal flex flex-wrap justify-center gap-x-8 gap-y-3 mt-10 text-sm text-[var(--muted)] font-mono">
+    <span>✓ Garantia de 7 dias</span>
+    <span>✓ Acesso direto ao criador</span>
+    <span>✓ Novos templates liberados primeiro</span>
+    <span>✓ Cancele quando quiser</span>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="max-w-3xl mx-auto px-6 py-20 border-t border-[var(--border)]">
+  <div class="reveal mb-10">
+    <p class="eyebrow mb-3">dúvidas</p>
+    <h2 class="font-display font-bold text-3xl leading-tight">Perguntas frequentes</h2>
+  </div>
+  <div class="space-y-3">
+    <details class="reveal fold-card p-5">
+      <summary class="flex justify-between items-center font-medium">
+        Preciso saber design ou usar programas complicados?
+        <span class="chev text-[var(--accent-light)] text-xl leading-none">+</span>
+      </summary>
+      <p class="text-[var(--muted)] text-sm mt-3">Não. Você escolhe um template já pronto e escreve o conteúdo em texto simples, e o DocFy cuida de toda a parte visual.</p>
+    </details>
+    <details class="reveal fold-card p-5">
+      <summary class="flex justify-between items-center font-medium">
+        Funciona no celular também?
+        <span class="chev text-[var(--accent-light)] text-xl leading-none">+</span>
+      </summary>
+      <p class="text-[var(--muted)] text-sm mt-3">Sim, o DocFy é responsivo e funciona direto do navegador, no computador ou no celular.</p>
+    </details>
+    <details class="reveal fold-card p-5">
+      <summary class="flex justify-between items-center font-medium">
+        Posso cancelar quando quiser?
+        <span class="chev text-[var(--accent-light)] text-xl leading-none">+</span>
+      </summary>
+      <p class="text-[var(--muted)] text-sm mt-3">Sim, sem burocracia. E você ainda tem 7 dias de garantia após a compra, sem perguntas.</p>
+    </details>
+    <details class="reveal fold-card p-5">
+      <summary class="flex justify-between items-center font-medium">
+        Quantos documentos posso gerar?
+        <span class="chev text-[var(--accent-light)] text-xl leading-none">+</span>
+      </summary>
+      <p class="text-[var(--muted)] text-sm mt-3">Sem limite artificial: gere quantas propostas, relatórios e materiais precisar durante sua assinatura.</p>
+    </details>
+    <details class="reveal fold-card p-5">
+      <summary class="flex justify-between items-center font-medium">
+        Como funciona o suporte?
+        <span class="chev text-[var(--accent-light)] text-xl leading-none">+</span>
+      </summary>
+      <p class="text-[var(--muted)] text-sm mt-3">Quem assina agora tem acesso direto ao criador do DocFy para tirar dúvidas e sugerir melhorias.</p>
+    </details>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="relative overflow-hidden border-t border-[var(--border)]">
+  <div class="glow-radial absolute inset-0"></div>
+  <div class="max-w-3xl mx-auto px-6 py-24 text-center relative reveal">
+    <h2 class="font-display font-bold text-3xl md:text-4xl leading-tight mb-5">
+      Seu próximo documento pode ser<br>o primeiro que parece profissional.
+    </h2>
+    <p class="text-[var(--muted)] text-lg mb-8">Comece agora, com garantia de 7 dias.</p>
+    <a href="#precos" class="btn-primary inline-block text-white font-semibold px-8 py-4 rounded-full">Criar meu primeiro documento</a>
+  </div>
+</section>
+
+<footer class="max-w-6xl mx-auto px-6 py-10 border-t border-[var(--border)] flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-[var(--muted)]">
+  <div class="flex items-center gap-2">
+    <span class="font-display font-semibold">Doc<span class="text-[var(--accent)]">Fy</span></span>
+  </div>
+  <p>© 2026 DocFy. Todos os direitos reservados.</p>
+</footer>
+
+<script>
+  const els = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.12 });
+  els.forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
