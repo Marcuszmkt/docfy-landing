@@ -95,7 +95,6 @@ p { text-wrap: pretty; }
   display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
   min-height: 44px; padding: 0 1.25rem; border-radius: 999px;
   font-weight: 700; font-size: 1rem; line-height: 1; text-decoration: none; white-space: nowrap;
-  transition: transform 160ms var(--ease), box-shadow 300ms var(--ease), background-color 200ms ease, color 200ms ease;
 }
 .btn:active { transform: scale(0.97); }
 .btn--sm { font-size: 0.9375rem; padding: 0 1.1rem; }
@@ -459,7 +458,6 @@ p { text-wrap: pretty; }
 @media (hover: hover) and (pointer: fine) { .footer__cols a:hover { color: var(--blue-deep); } }
 /* a palavra ocupa a largura útil inteira; o espaço embaixo é para a perna do "y" */
 .footer__mark { margin: clamp(2.5rem, 6vw, 5rem) 0 0.75rem -0.05em; padding-bottom: 0.17em; font-size: min(calc((100vw - 2 * clamp(20px, 4vw, 32px)) / 2.8), 25.5rem); font-weight: 800; letter-spacing: -0.065em; line-height: 0.8; white-space: nowrap; }
-.footer__mark span { color: var(--blue); }
 .footer__legal { color: var(--dark-muted); font-size: 0.8125rem; }
 
 /* =================================================================
@@ -548,40 +546,109 @@ p { text-wrap: pretty; }
 }
 
 /* =================================================================
-   Movimento (o conteúdo fica visível sem JavaScript)
+   Elementos dos efeitos (visíveis com ou sem animação)
    ================================================================= */
-@media (prefers-reduced-motion: no-preference) {
-  html { scroll-behavior: smooth; }
+/* barra de progresso da leitura */
+.progress { position: fixed; inset: 0 0 auto 0; z-index: 60; height: 3px; pointer-events: none; }
+.progress i { display: block; height: 100%; background: linear-gradient(90deg, var(--blue-deep), var(--blue), var(--blue-light)); transform-origin: left; transform: scaleX(var(--sp, 0)); box-shadow: 0 0 12px rgba(45, 140, 255, 0.8); }
 
-  /* o topo anima no carregamento, sem esperar a rolagem */
-  .js [data-rise] { opacity: 0; transform: translateY(24px); animation: rise 1000ms var(--ease) forwards; animation-delay: calc(var(--d, 0) * 80ms + 60ms); }
-  .stack3d { animation: rise-in 1400ms var(--ease) 250ms both; }
-  .js [data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity 900ms var(--ease), transform 1100ms var(--ease), border-color 300ms ease, box-shadow 400ms var(--ease); transition-delay: calc(var(--d, 0) * 90ms); }
-  .js [data-reveal].is-in { opacity: 1; transform: none; }
-  .js [data-reveal].is-in.glow-card { transition-delay: 0s; }
+/* luz azul que segue o mouse (só desktop, só com animação) */
+.cursor-glow { position: fixed; left: 0; top: 0; z-index: 45; width: 560px; height: 560px; margin: -280px 0 0 -280px; border-radius: 50%; pointer-events: none; background: radial-gradient(closest-side, rgba(45, 140, 255, 0.16), transparent); mix-blend-mode: screen; opacity: 0; transition: opacity 400ms ease; }
+.has-pointer .cursor-glow { opacity: 1; }
 
-  .aurora--1 { animation: drift-1 22s ease-in-out infinite alternate; }
-  .aurora--2 { animation: drift-2 26s ease-in-out infinite alternate; }
-  .aurora--3 { animation: drift-3 30s ease-in-out infinite alternate; }
-  .grad { animation: shimmer 8s linear infinite; }
-  .float--back { animation: bob 7s ease-in-out infinite; }
-  .float--mid { animation: bob 8s ease-in-out -2s infinite; }
-  .float--front { animation: bob 6.5s ease-in-out -4s infinite; }
-  .plan--featured::after { animation: spin-border 5s linear infinite; }
+/* título do topo palavra por palavra */
+.hero__title .w { display: inline-block; overflow: hidden; vertical-align: top; padding: 0 0.04em 0.1em; margin: 0 -0.04em -0.1em; }
+.hero__title .w > span { display: inline-block; }
 
-  /* o recibo sai da "impressora" */
-  .js .slip[data-reveal] { opacity: 1; transform: none; clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); transition: clip-path 1400ms var(--ease-io); transition-delay: 200ms; }
-  .js .slip[data-reveal].is-in { clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), 97.50% 100%, 95.00% calc(100% - 12px), 92.50% 100%, 90.00% calc(100% - 12px), 87.50% 100%, 85.00% calc(100% - 12px), 82.50% 100%, 80.00% calc(100% - 12px), 77.50% 100%, 75.00% calc(100% - 12px), 72.50% 100%, 70.00% calc(100% - 12px), 67.50% 100%, 65.00% calc(100% - 12px), 62.50% 100%, 60.00% calc(100% - 12px), 57.50% 100%, 55.00% calc(100% - 12px), 52.50% 100%, 50.00% calc(100% - 12px), 47.50% 100%, 45.00% calc(100% - 12px), 42.50% 100%, 40.00% calc(100% - 12px), 37.50% 100%, 35.00% calc(100% - 12px), 32.50% 100%, 30.00% calc(100% - 12px), 27.50% 100%, 25.00% calc(100% - 12px), 22.50% 100%, 20.00% calc(100% - 12px), 17.50% 100%, 15.00% calc(100% - 12px), 12.50% 100%, 10.00% calc(100% - 12px), 7.50% 100%, 5.00% calc(100% - 12px), 2.50% 100%, 0.00% calc(100% - 12px)); }
+/* frase que acende com a rolagem */
+.statement { padding: clamp(5rem, 12vw, 10rem) 0 clamp(3rem, 6vw, 5rem); }
+.statement__text { max-width: 24ch; font-size: clamp(2rem, 1rem + 3.6vw, 4.25rem); font-weight: 800; line-height: 1.08; letter-spacing: -0.04em; text-wrap: balance; }
+.statement__text .sw { opacity: var(--o, 1); transition: opacity 120ms linear; }
+.statement__text .sw--hi { background: linear-gradient(90deg, #8cc2ff, var(--blue)); -webkit-background-clip: text; background-clip: text; color: transparent; }
 
-  /* a resposta das dúvidas aparece suave */
-  .qa[open] p { animation: fade-up 450ms var(--ease); }
+/* faixas de texto que andam com a rolagem */
+.marquee { overflow: hidden; padding: clamp(1rem, 3vw, 2rem) 0 clamp(4rem, 8vw, 7rem); user-select: none; }
+.marquee__row { display: flex; gap: 0.5em; width: max-content; font-size: clamp(3rem, 1.8rem + 6vw, 8.5rem); font-weight: 800; letter-spacing: -0.045em; line-height: 1.05; white-space: nowrap; transform: translate3d(var(--mx, 0px), 0, 0); will-change: transform; }
+.marquee__row span { display: inline-flex; align-items: center; gap: 0.5em; }
+.marquee__row span::after { content: ""; width: 0.18em; height: 0.18em; border-radius: 50%; background: var(--blue); }
+.marquee__row--outline { color: transparent; -webkit-text-stroke: 1.5px rgba(111, 178, 255, 0.55); }
 
-  .js .footer__mark { transform: translateY(35%); opacity: 0; transition: transform 1400ms var(--ease), opacity 1000ms ease; }
-  .js .footer.is-in .footer__mark { transform: none; opacity: 1; }
-}
+/* brilho que atravessa os contadores */
+.stats { position: relative; }
+.stats::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(105deg, transparent 35%, rgba(111, 178, 255, 0.22) 50%, transparent 65%); transform: translateX(-100%); }
+
+/* ondinha ao tocar nos botões */
+.ripple { position: absolute; z-index: -1; width: 20px; height: 20px; margin: -10px 0 0 -10px; border-radius: 50%; background: rgba(255, 255, 255, 0.45); pointer-events: none; animation: ripple 650ms var(--ease) forwards; }
+.btn--dark .ripple { background: rgba(111, 178, 255, 0.45); }
+
+/* letras do DocFy gigante */
+.footer__mark .l { display: inline-block; }
+.footer__mark .fy { color: var(--blue); }
+
+/* =================================================================
+   Movimento: só com a classe .motion (sistema sem "reduzir movimento",
+   ou ?motion=1 na URL para pré-visualizar). Sem JavaScript, tudo aparece parado.
+   ================================================================= */
+.motion { scroll-behavior: smooth; }
+.btn { transition: transform 160ms var(--ease), translate 450ms var(--ease), box-shadow 300ms var(--ease), background-color 200ms ease, color 200ms ease; }
+
+/* topo: palavras sobem de trás da linha, desfocadas, e entram em foco */
+.motion .hero__title .w > span { transform: translateY(105%) rotate(5deg); filter: blur(10px); opacity: 0; animation: word-in 1200ms var(--ease) forwards; animation-delay: calc(var(--w) * 110ms + 120ms); }
+.motion [data-rise] { opacity: 0; transform: translateY(24px); animation: rise 1000ms var(--ease) forwards; animation-delay: calc(var(--d, 0) * 80ms + 300ms); }
+.motion .stack3d { animation: rise-in 1500ms var(--ease) 350ms both; }
+
+/* entrada das seções: sobe, aparece e (nos títulos) sai do desfoque */
+.motion [data-reveal] { opacity: 0; transform: translateY(32px); transition: opacity 900ms var(--ease), transform 1100ms var(--ease), filter 1000ms var(--ease), border-color 300ms ease, box-shadow 400ms var(--ease); transition-delay: calc(var(--d, 0) * 90ms); }
+.motion .h2[data-reveal], .motion .label[data-reveal] { filter: blur(8px); }
+.motion [data-reveal].is-in { opacity: 1; transform: none; filter: none; }
+.motion [data-reveal].is-in.glow-card { transition-delay: 0s; }
+.motion .plan[data-reveal] { transform: translateY(48px) scale(0.96); }
+.motion .plan[data-reveal].is-in { transform: none; }
+.motion .cta[data-reveal] { transform: translateY(60px) scale(0.94); }
+.motion .cta[data-reveal].is-in { transform: none; }
+
+/* loops decorativos (param sozinhos depois de 5s, ver .is-still) */
+.motion .aurora--1 { animation: drift-1 22s ease-in-out infinite alternate; }
+.motion .aurora--2 { animation: drift-2 26s ease-in-out infinite alternate; }
+.motion .aurora--3 { animation: drift-3 30s ease-in-out infinite alternate; }
+.motion .grad { animation: shimmer 8s linear infinite; }
+.motion .float--back { animation: bob 7s ease-in-out infinite; }
+.motion .float--mid { animation: bob 8s ease-in-out -2s infinite; }
+.motion .float--front { animation: bob 6.5s ease-in-out -4s infinite; }
+.motion .plan--featured::after { animation: spin-border 5s linear infinite; }
+
+/* as folhas do topo se abrem em leque ao rolar */
+.float--back { --fx: -1; --fy: 0.5; --fr: -1; }
+.float--mid { --fx: 1; --fy: 0.3; --fr: 1; }
+.float--front { --fx: 0; --fy: -0.7; --fr: 0; }
+.motion .float { translate: calc(var(--x) + var(--fan, 0) * var(--fx) * 90px) calc(var(--y) + var(--fan, 0) * var(--fy) * 90px); }
+.motion .float .a4 { transform: rotate(calc(var(--r) + var(--fan, 0) * var(--fr) * 7deg)) translateZ(var(--z)); }
+
+/* o bloco claro cresce ao entrar */
+.motion .light { transform: scale(var(--ls, 1)); transform-origin: 50% 0; }
+
+/* contadores: brilho atravessa uma vez */
+.motion .stats.is-in::after { animation: sweep 1700ms var(--ease) 500ms both; }
+
+/* o recibo sai da "impressora" */
+.motion .slip[data-reveal] { opacity: 1; transform: none; clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); transition: clip-path 1400ms var(--ease-io); transition-delay: 200ms; }
+.motion .slip[data-reveal].is-in { clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), 97.50% 100%, 95.00% calc(100% - 12px), 92.50% 100%, 90.00% calc(100% - 12px), 87.50% 100%, 85.00% calc(100% - 12px), 82.50% 100%, 80.00% calc(100% - 12px), 77.50% 100%, 75.00% calc(100% - 12px), 72.50% 100%, 70.00% calc(100% - 12px), 67.50% 100%, 65.00% calc(100% - 12px), 62.50% 100%, 60.00% calc(100% - 12px), 57.50% 100%, 55.00% calc(100% - 12px), 52.50% 100%, 50.00% calc(100% - 12px), 47.50% 100%, 45.00% calc(100% - 12px), 42.50% 100%, 40.00% calc(100% - 12px), 37.50% 100%, 35.00% calc(100% - 12px), 32.50% 100%, 30.00% calc(100% - 12px), 27.50% 100%, 25.00% calc(100% - 12px), 22.50% 100%, 20.00% calc(100% - 12px), 17.50% 100%, 15.00% calc(100% - 12px), 12.50% 100%, 10.00% calc(100% - 12px), 7.50% 100%, 5.00% calc(100% - 12px), 2.50% 100%, 0.00% calc(100% - 12px)); }
+
+/* passos 01 02 03 entram pela esquerda */
+.motion .step[data-reveal] { transform: translateX(-32px); }
+.motion .step[data-reveal].is-in { transform: none; }
+
+/* a resposta das dúvidas aparece suave */
+.motion .qa[open] p { animation: fade-up 450ms var(--ease); }
+
+/* DocFy gigante: letra por letra */
+.motion .footer__mark .l { transform: translateY(70%) rotate(6deg); opacity: 0; transition: transform 1100ms var(--ease), opacity 800ms ease; transition-delay: calc(var(--l) * 80ms); }
+.motion .footer.is-in .footer__mark .l { transform: none; opacity: 1; }
+
 /* loops decorativos param quando saem da tela ou depois de 5s (classe .is-still) */
-.is-still .aurora, .is-still .float, .is-still .grad, .is-still.plan--featured::after,
-.is-still .plan--featured::after { animation-play-state: paused !important; }
+.is-still .aurora, .is-still .float, .is-still .grad, .is-still.plan--featured::after { animation-play-state: paused !important; }
+
+@keyframes word-in { to { transform: none; filter: blur(0); opacity: 1; } }
 @keyframes drift-1 { to { transform: translate3d(12vw, 8vh, 0) scale(1.15); } }
 @keyframes drift-2 { to { transform: translate3d(-10vw, 10vh, 0) scale(0.9); } }
 @keyframes drift-3 { to { transform: translate3d(8vw, -12vh, 0) scale(1.2); } }
@@ -591,7 +658,8 @@ p { text-wrap: pretty; }
 @keyframes rise { to { opacity: 1; transform: none; } }
 @keyframes rise-in { from { opacity: 0; transform: translateY(40px) scale(0.96); } }
 @keyframes fade-up { from { opacity: 0; transform: translateY(8px); } }
+@keyframes sweep { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+@keyframes ripple { from { transform: scale(0); opacity: 1; } to { transform: scale(14); opacity: 0; } }
 
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
-}
+/* sem a classe .motion, nada se move */
+html:not(.motion) *, html:not(.motion) *::before, html:not(.motion) *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }

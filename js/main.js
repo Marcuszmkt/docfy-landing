@@ -1,6 +1,8 @@
 // DocFy: página de vendas. JavaScript puro, sem dependências.
 
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+// a classe .motion é decidida no <head>: sistema sem "reduzir movimento", ou ?motion=1 para pré-visualizar
+const reduceMotion = !document.documentElement.classList.contains('motion');
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 const desktop = window.matchMedia('(min-width: 900px)');
 const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
@@ -200,9 +202,25 @@ const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
   [nome, cliente].forEach((input) => { input.addEventListener('input', bind); input.addEventListener('focus', stop); });
   bind();
 
+  // na primeira vez que a janela aparece, o nome é "digitado" letra por letra
+  let typed = false;
+  const typeIn = async () => {
+    const full = nome.value;
+    nome.value = '';
+    bind();
+    for (const ch of full) {
+      if (touched) return;
+      nome.value += ch;
+      bind();
+      await sleep(60);
+    }
+  };
+
   if ('IntersectionObserver' in window) {
-    new IntersectionObserver(([e]) => { if (e.isIntersecting) start(); else { clearInterval(timer); timer = null; } }, { threshold: 0.5 })
-      .observe(a4.closest('.window'));
+    new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) { clearInterval(timer); timer = null; return; }
+      if (!typed && !touched && !reduceMotion) { typed = true; typeIn().then(() => sleep(900)).then(start); } else start();
+    }, { threshold: 0.5 }).observe(a4.closest('.window'));
   }
   document.addEventListener('visibilitychange', () => { if (document.hidden) { clearInterval(timer); timer = null; } });
 })();
@@ -291,4 +309,152 @@ const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
     buy.textContent = r.dataset.label;
     sum.textContent = r.dataset.sum;
   }));
+})();
+
+// =====================================================================
+// Efeitos extras
+// =====================================================================
+
+// ---------- frase que acende: separa as palavras em <span> ----------
+(() => {
+  const el = document.getElementById('statement');
+  if (!el) return;
+  const wrap = (text, hi) => {
+    const frag = document.createDocumentFragment();
+    text.split(/(\s+)/).forEach((part) => {
+      if (!part) return;
+      if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+      const s = document.createElement('span');
+      s.className = hi ? 'sw sw--hi' : 'sw';
+      s.textContent = part;
+      frag.appendChild(s);
+    });
+    return frag;
+  };
+  [...el.childNodes].forEach((node) => {
+    if (node.nodeType === 3) el.replaceChild(wrap(node.textContent, false), node);
+    else if (node.classList && node.classList.contains('sw--mark')) el.replaceChild(wrap(node.textContent, true), node);
+  });
+})();
+
+// ---------- motor de rolagem: lê tudo primeiro, depois escreve (sem travar o layout) ----------
+(() => {
+  const bar = document.getElementById('progress-bar');
+  const stack = document.getElementById('stack3d');
+  const hero = document.getElementById('topo');
+  const statement = document.getElementById('statement');
+  const words = statement ? [...statement.querySelectorAll('.sw')] : [];
+  const marquee = document.getElementById('marquee');
+  const rows = marquee ? [...marquee.querySelectorAll('.marquee__row')] : [];
+  const light = document.querySelector('.light');
+
+  let queued = false;
+  const frame = () => {
+    queued = false;
+    const vh = window.innerHeight;
+    const doc = document.documentElement;
+    // leituras
+    const max = doc.scrollHeight - vh;
+    const progress = max > 0 ? window.scrollY / max : 0;
+    const heroR = !reduceMotion && hero ? hero.getBoundingClientRect() : null;
+    const stR = !reduceMotion && statement ? statement.getBoundingClientRect() : null;
+    const mqR = !reduceMotion && marquee ? marquee.getBoundingClientRect() : null;
+    const liR = !reduceMotion && light ? light.getBoundingClientRect() : null;
+    const rowW = mqR ? rows.map((r) => r.scrollWidth) : [];
+
+    // escritas
+    if (bar) bar.style.setProperty('--sp', progress.toFixed(4));
+    if (reduceMotion) return;
+    if (heroR && stack) stack.style.setProperty('--fan', clamp(-heroR.top / (heroR.height * 0.7), 0, 1).toFixed(3));
+    if (stR && words.length && stR.top < vh && stR.bottom > 0) {
+      const p = clamp((vh * 0.85 - stR.top) / (stR.height + vh * 0.25), 0, 1) * words.length;
+      words.forEach((w, i) => w.style.setProperty('--o', (0.16 + 0.84 * clamp(p - i, 0, 1)).toFixed(2)));
+    }
+    if (mqR && mqR.top < vh && mqR.bottom > 0) {
+      const travel = (vh - mqR.top) * 0.45;
+      rows.forEach((r, k) => {
+        const dir = Number(r.dataset.dir);
+        const base = dir < 0 ? 0 : -rowW[k] / 3;
+        r.style.setProperty('--mx', `${(base + dir * travel).toFixed(1)}px`);
+      });
+    }
+    if (liR) {
+      const t = clamp((vh - liR.top) / (vh * 0.6), 0, 1);
+      light.style.setProperty('--ls', t >= 1 ? '1' : (0.93 + 0.07 * t).toFixed(4));
+    }
+  };
+  const queue = () => { if (!queued) { queued = true; requestAnimationFrame(frame); } };
+  if (statement && !reduceMotion) words.forEach((w) => w.style.setProperty('--o', '0.16'));
+  window.addEventListener('scroll', queue, { passive: true });
+  window.addEventListener('resize', queue);
+  queue();
+})();
+
+// ---------- luz azul que segue o mouse ----------
+(() => {
+  const glow = document.getElementById('cursor-glow');
+  if (!glow || !finePointer || reduceMotion) return;
+  let x = innerWidth / 2, y = innerHeight / 3, tx = x, ty = y, raf = 0;
+  const render = () => {
+    x += (tx - x) * 0.14;
+    y += (ty - y) * 0.14;
+    glow.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0)`;
+    raf = (Math.abs(tx - x) > 0.3 || Math.abs(ty - y) > 0.3) ? requestAnimationFrame(render) : 0;
+  };
+  window.addEventListener('pointermove', (e) => {
+    tx = e.clientX; ty = e.clientY;
+    document.documentElement.classList.add('has-pointer');
+    if (!raf) raf = requestAnimationFrame(render);
+  }, { passive: true });
+  document.addEventListener('pointerleave', () => document.documentElement.classList.remove('has-pointer'));
+})();
+
+// ---------- botões magnéticos (puxam de leve na direção do mouse) ----------
+(() => {
+  if (!finePointer || reduceMotion) return;
+  document.querySelectorAll('.btn--lg, .nav .btn').forEach((btn) => {
+    btn.addEventListener('pointermove', (e) => {
+      const r = btn.getBoundingClientRect();
+      const dx = (e.clientX - (r.left + r.width / 2)) * 0.25;
+      const dy = (e.clientY - (r.top + r.height / 2)) * 0.35;
+      btn.style.translate = `${dx.toFixed(1)}px ${dy.toFixed(1)}px`;
+    });
+    btn.addEventListener('pointerleave', () => { btn.style.translate = ''; });
+  });
+})();
+
+// ---------- ondinha ao tocar nos botões ----------
+(() => {
+  if (reduceMotion) return;
+  document.addEventListener('pointerdown', (e) => {
+    const btn = e.target.closest && e.target.closest('.btn');
+    if (!btn) return;
+    const r = btn.getBoundingClientRect();
+    const dot = document.createElement('span');
+    dot.className = 'ripple';
+    dot.style.left = `${e.clientX - r.left}px`;
+    dot.style.top = `${e.clientY - r.top}px`;
+    btn.appendChild(dot);
+    dot.addEventListener('animationend', () => dot.remove());
+  }, { passive: true });
+})();
+
+// ---------- inclinação 3D nos cards ao passar o mouse ----------
+(() => {
+  if (!finePointer || reduceMotion) return;
+  document.querySelectorAll('.plan, .window, .slip, .stats').forEach((card) => {
+    const max = card.classList.contains('stats') ? 3 : 7;
+    card.addEventListener('pointermove', (e) => {
+      if (card.hasAttribute('data-reveal') && !card.classList.contains('is-in')) return;
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      card.style.transition = 'transform 150ms ease-out, box-shadow 400ms ease, border-color 300ms ease';
+      card.style.transform = `perspective(1000px) rotateX(${(-y * max).toFixed(2)}deg) rotateY(${(x * max).toFixed(2)}deg) translateY(-4px)`;
+    });
+    card.addEventListener('pointerleave', () => {
+      card.style.transition = 'transform 700ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 400ms ease, border-color 300ms ease';
+      card.style.transform = '';
+    });
+  });
 })();

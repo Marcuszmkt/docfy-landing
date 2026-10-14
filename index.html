@@ -14,11 +14,20 @@
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/style.css">
-<script>document.documentElement.classList.add('js')</script>
+<script>
+  // .js: há JavaScript. .motion: animações ligadas (sistema sem "reduzir movimento", ou ?motion=1 para pré-visualizar)
+  (function (d) {
+    var force = /[?&]motion=1/.test(location.search);
+    d.classList.add('js');
+    if (force || !matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('motion');
+  })(document.documentElement);
+</script>
 </head>
 <body>
 
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+<div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
 
 <!-- ============ CABEÇALHO (vidro) ============ -->
 <header class="nav" id="nav">
@@ -56,7 +65,7 @@
     <div class="hero__inner">
       <div class="hero__text">
         <p class="label" data-rise>gerador de documentos em pdf</p>
-        <h1 class="hero__title" id="hero-titulo" data-rise style="--d:1">PDF profissional <span class="grad">em 1&nbsp;minuto</span></h1>
+        <h1 class="hero__title" id="hero-titulo"><span class="w"><span style="--w:0">PDF</span></span> <span class="w"><span style="--w:1">profissional</span></span> <span class="w"><span class="grad" style="--w:2">em</span></span> <span class="w"><span class="grad" style="--w:3">1&nbsp;minuto</span></span></h1>
         <p class="hero__sub" data-rise style="--d:2">Entregável, orçamento, proposta, contrato e currículo com cara de agência. Você escreve, o DocFy monta o layout e entrega o PDF.</p>
         <div class="hero__ctas" data-rise style="--d:3">
           <a class="btn btn--primary btn--lg" href="#precos">Começar agora</a>
@@ -278,6 +287,18 @@
       </div>
     </div>
   </section>
+
+  <!-- ============ FRASE QUE ACENDE COM A ROLAGEM ============ -->
+  <section class="statement" aria-label="Por que usar o DocFy">
+    <div class="wrap">
+      <p class="statement__text" id="statement">Seu cliente decide em segundos se você é profissional. Com o DocFy, o primeiro PDF que ele abre <span class="sw--mark">já responde que sim.</span></p>
+    </div>
+  </section>
+
+  <div class="marquee" id="marquee" aria-hidden="true">
+    <div class="marquee__row" data-dir="-1"><span>Entregável</span><span>Orçamento</span><span>Proposta</span><span>Contrato</span><span>Currículo</span><span>Entregável</span><span>Orçamento</span><span>Proposta</span><span>Contrato</span><span>Currículo</span><span>Entregável</span><span>Orçamento</span><span>Proposta</span><span>Contrato</span><span>Currículo</span></div>
+    <div class="marquee__row marquee__row--outline" data-dir="1"><span>Entregável</span><span>Orçamento</span><span>Proposta</span><span>Contrato</span><span>Currículo</span><span>Entregável</span><span>Orçamento</span><span>Proposta</span><span>Contrato</span><span>Currículo</span><span>Entregável</span><span>Orçamento</span><span>Proposta</span><span>Contrato</span><span>Currículo</span></div>
+  </div>
 
   <!-- ============ COMO FUNCIONA ============ -->
   <section class="how" id="como-funciona" aria-labelledby="como-titulo">
@@ -526,7 +547,7 @@
         <p>7&nbsp;dias em qualquer plano. Pagamento seguro pela Cakto.</p>
       </div>
     </div>
-    <p class="footer__mark" translate="no" aria-hidden="true">Doc<span>Fy</span></p>
+    <p class="footer__mark" translate="no" aria-hidden="true"><span class="l" style="--l:0">D</span><span class="l" style="--l:1">o</span><span class="l" style="--l:2">c</span><span class="l fy" style="--l:3">F</span><span class="l fy" style="--l:4">y</span></p>
     <p class="footer__legal">© 2026 DocFy. Todos os direitos reservados.</p>
   </div>
 </footer>
