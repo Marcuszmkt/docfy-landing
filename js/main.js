@@ -79,42 +79,34 @@ const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
   counters.forEach((c) => io.observe(c));
 })();
 
-// ---------- topo: grade que brilha sob o mouse + pilha 3D com inclinação e parallax ----------
+// ---------- topo: grade que brilha sob o mouse + pilha 3D que inclina com o mouse (só desktop) ----------
+// as folhas não se mexem com a rolagem
 (() => {
   const hero = document.getElementById('topo');
-  const stack = document.getElementById('stack3d');
   const inner = document.getElementById('stack3d-inner');
-  if (!hero || !stack || !inner || reduceMotion) return;
+  if (!hero || !inner || reduceMotion || !finePointer) return;
 
-  let tx = 0, ty = 0, rx = 0, ry = 0, scrollY = 0, raf = 0;
+  let tx = 0, ty = 0, rx = 0, ry = 0, raf = 0;
   const render = () => {
     rx += (tx - rx) * 0.08;
     ry += (ty - ry) * 0.08;
-    const lift = desktop.matches ? clamp(scrollY * -0.12, -120, 0) : 0;
-    inner.style.transform = `translate3d(0, ${lift.toFixed(1)}px, 0) rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg)`;
+    inner.style.transform = `rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg)`;
     raf = (Math.abs(tx - rx) > 0.01 || Math.abs(ty - ry) > 0.01) ? requestAnimationFrame(render) : 0;
   };
   const kick = () => { if (!raf) raf = requestAnimationFrame(render); };
 
-  if (finePointer) {
-    hero.addEventListener('pointermove', (e) => {
-      const r = hero.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width;
-      const y = (e.clientY - r.top) / r.height;
-      hero.style.setProperty('--mx', `${(x * 100).toFixed(1)}%`);
-      hero.style.setProperty('--my', `${(y * 100).toFixed(1)}%`);
-      hero.classList.add('is-pointer');
-      ty = (x - 0.5) * 16;
-      tx = (0.5 - y) * 10;
-      kick();
-    });
-    hero.addEventListener('pointerleave', () => { hero.classList.remove('is-pointer'); tx = 0; ty = 0; kick(); });
-  }
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > innerHeight * 1.2) return;
-    scrollY = window.scrollY;
+  hero.addEventListener('pointermove', (e) => {
+    const r = hero.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width;
+    const y = (e.clientY - r.top) / r.height;
+    hero.style.setProperty('--mx', `${(x * 100).toFixed(1)}%`);
+    hero.style.setProperty('--my', `${(y * 100).toFixed(1)}%`);
+    hero.classList.add('is-pointer');
+    ty = (x - 0.5) * 16;
+    tx = (0.5 - y) * 10;
     kick();
-  }, { passive: true });
+  });
+  hero.addEventListener('pointerleave', () => { hero.classList.remove('is-pointer'); tx = 0; ty = 0; kick(); });
 })();
 
 // ---------- cards: a borda de brilho segue o mouse ----------
@@ -340,8 +332,6 @@ const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
 // ---------- motor de rolagem: lê tudo primeiro, depois escreve (sem travar o layout) ----------
 (() => {
   const bar = document.getElementById('progress-bar');
-  const stack = document.getElementById('stack3d');
-  const hero = document.getElementById('topo');
   const statement = document.getElementById('statement');
   const words = statement ? [...statement.querySelectorAll('.sw')] : [];
   const marquee = document.getElementById('marquee');
@@ -356,7 +346,6 @@ const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
     // leituras
     const max = doc.scrollHeight - vh;
     const progress = max > 0 ? window.scrollY / max : 0;
-    const heroR = !reduceMotion && hero ? hero.getBoundingClientRect() : null;
     const stR = !reduceMotion && statement ? statement.getBoundingClientRect() : null;
     const mqR = !reduceMotion && marquee ? marquee.getBoundingClientRect() : null;
     const liR = !reduceMotion && light ? light.getBoundingClientRect() : null;
@@ -365,7 +354,6 @@ const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
     // escritas
     if (bar) bar.style.setProperty('--sp', progress.toFixed(4));
     if (reduceMotion) return;
-    if (heroR && stack) stack.style.setProperty('--fan', clamp(-heroR.top / (heroR.height * 0.7), 0, 1).toFixed(3));
     if (stR && words.length && stR.top < vh && stR.bottom > 0) {
       const p = clamp((vh * 0.85 - stR.top) / (stR.height + vh * 0.25), 0, 1) * words.length;
       words.forEach((w, i) => w.style.setProperty('--o', (0.16 + 0.84 * clamp(p - i, 0, 1)).toFixed(2)));

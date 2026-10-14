@@ -294,8 +294,10 @@ p { text-wrap: pretty; }
 .docs__stage { position: relative; height: min(76vh, 660px); touch-action: pan-y; }
 .docs__halo { position: absolute; inset: 8% 0; border-radius: 50%; background: radial-gradient(closest-side, rgba(45, 140, 255, 0.4), transparent); }
 .docs__page {
+  --pw: min(440px, calc(min(76vh, 660px) / 1.414));
   position: absolute; left: 50%; top: 50%;
-  width: min(440px, calc(min(76vh, 660px) / 1.414));
+  width: var(--pw);
+  height: calc(var(--pw) * 1.414); /* altura explícita: não depende do navegador calcular a proporção A4 */
   translate: -50% -50%;
   opacity: 0; transform: translateY(60px) scale(0.94) rotate(2deg);
   transition: opacity 500ms ease, transform 900ms var(--ease);
@@ -514,8 +516,15 @@ p { text-wrap: pretty; }
   .docs__item.is-active { background: rgba(45, 140, 255, 0.2); box-shadow: inset 0 0 0 1px var(--blue), 0 0 24px -6px rgba(45, 140, 255, 0.7); }
   .docs__name { font-size: 0.9375rem; font-weight: 600; letter-spacing: 0; color: var(--muted); }
   .docs__desc, .docs__bar { display: none; }
-  .docs__stage { height: calc(min(80vw, 340px) * 1.414 + 1rem); }
-  .docs__page { width: min(80vw, 340px); }
+  .docs__stage { height: calc(min(80vw, 340px) * 1.414 + 1rem); overflow: hidden; }
+  .docs__page { --pw: min(80vw, 340px); top: 0.5rem; translate: -50% 0; }
+  /* letra um pouco menor no celular para o conteúdo de cada folha caber inteiro */
+  .docs__page { padding: 1.5rem 1.35rem; font-size: 0.8125rem; line-height: 1.4; }
+  .docs__page .a4__title { font-size: 1.25rem; }
+  .docs__page .a4__name { font-size: 1.35rem; }
+  .docs__page .a4__h { margin-top: 1rem; }
+  .docs__page .a4__row { padding: 0.3rem 0; }
+  .docs__page .a4__sign { margin-top: 1.5rem; }
   .docs__caption { display: block; min-height: 4.8em; text-align: center; color: var(--muted); max-width: 36ch; margin-inline: auto; }
 
   .how__inner { grid-template-columns: 1fr; }
@@ -616,13 +625,6 @@ p { text-wrap: pretty; }
 .motion .float--mid { animation: bob 8s ease-in-out -2s infinite; }
 .motion .float--front { animation: bob 6.5s ease-in-out -4s infinite; }
 .motion .plan--featured::after { animation: spin-border 5s linear infinite; }
-
-/* as folhas do topo se abrem em leque ao rolar */
-.float--back { --fx: -1; --fy: 0.5; --fr: -1; }
-.float--mid { --fx: 1; --fy: 0.3; --fr: 1; }
-.float--front { --fx: 0; --fy: -0.7; --fr: 0; }
-.motion .float { translate: calc(var(--x) + var(--fan, 0) * var(--fx) * 90px) calc(var(--y) + var(--fan, 0) * var(--fy) * 90px); }
-.motion .float .a4 { transform: rotate(calc(var(--r) + var(--fan, 0) * var(--fr) * 7deg)) translateZ(var(--z)); }
 
 /* o bloco claro cresce ao entrar */
 .motion .light { transform: scale(var(--ls, 1)); transform-origin: 50% 0; }
