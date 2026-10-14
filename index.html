@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DocFy: PDF profissional em 1 minuto</title>
-<meta name="description" content="Proposta, orçamento, contrato, currículo e relatório de entrega com cara de agência. Você escreve, o DocFy monta o layout e entrega o PDF. A partir de R$ 19,90 por mês.">
+<meta name="description" content="Entregável, orçamento, proposta, contrato e currículo com cara de agência. Você escreve, o DocFy monta o layout e entrega o PDF. A partir de R$ 19,90 por mês.">
 <meta name="theme-color" content="#0a0e17">
 <meta name="color-scheme" content="dark">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:title" content="DocFy: PDF profissional em 1 minuto">
-<meta property="og:description" content="Proposta, orçamento, contrato, currículo e relatório de entrega com cara de agência, direto do celular.">
+<meta property="og:description" content="Entregável, orçamento, proposta, contrato e currículo com cara de agência, direto do celular.">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/style.css">
@@ -20,450 +20,516 @@
 
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>
 
-<!-- ============ TOPO: a pilha de pastas ============ -->
-<header class="hero" id="topo">
-  <div class="topbar">
-    <a class="wordmark" translate="no" href="#topo" aria-label="DocFy, voltar ao início">
-      <svg class="wordmark__icon" width="28" height="28" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+<!-- ============ CABEÇALHO (vidro) ============ -->
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a class="logo" href="#topo" translate="no" aria-label="DocFy, voltar ao início">
+      <svg width="26" height="26" viewBox="0 0 48 48" fill="none" aria-hidden="true">
         <path d="M12 6C10.34 6 9 7.34 9 9V39C9 40.66 10.34 42 12 42H36C37.66 42 39 40.66 39 39V17L28 6H12Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
         <path d="M28 6V13C28 15.21 29.79 17 32 17H39L28 6Z" fill="#2d8cff"/>
         <path d="M15 24H30M15 30H30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
       </svg>
-      <span>Doc<span class="wordmark__fy">Fy</span></span>
+      <span>Doc<span class="logo__fy">Fy</span></span>
     </a>
-    <a class="topbar__link link" href="#precos">Planos</a>
+    <nav class="nav__links" aria-label="Seções">
+      <a href="#modelos">Modelos</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#precos">Planos</a>
+      <a href="#duvidas">Dúvidas</a>
+    </nav>
+    <a class="btn btn--primary btn--sm" href="#precos">Começar agora</a>
   </div>
-
-  <div class="hero__text wrap">
-    <h1 class="display lines">
-      <span class="line"><span data-line style="--i:0">PDF profissional</span></span>
-      <span class="line"><span data-line style="--i:1">em 1&nbsp;minuto</span></span>
-    </h1>
-    <p class="hero__sub" data-rise style="--i:3">Proposta, orçamento, contrato, currículo e relatório de entrega com cara de agência. Você escreve, o DocFy monta o layout e entrega o PDF.</p>
-  </div>
-
-  <nav class="stack" aria-label="Os cinco tipos de documento">
-    <div class="folder" style="--n:0; --c:var(--f1); --ci:var(--f1-ink); --x:4%; --xm:0%;">
-      <a class="folder__tab" href="#doc-entregavel">Entregável</a>
-    </div>
-    <div class="folder" style="--n:1; --c:var(--f2); --ci:var(--f2-ink); --x:23%; --xm:34%;">
-      <a class="folder__tab" href="#doc-orcamento">Orçamento</a>
-    </div>
-    <div class="folder" style="--n:2; --c:var(--f3); --ci:var(--f3-ink); --x:42%; --xm:66%;">
-      <a class="folder__tab" href="#doc-proposta">Proposta</a>
-    </div>
-    <div class="folder" style="--n:3; --c:var(--f4); --ci:var(--f4-ink); --x:61%; --xm:6%;">
-      <a class="folder__tab" href="#doc-contrato">Contrato</a>
-    </div>
-    <div class="folder folder--front" style="--n:4; --c:var(--f5); --ci:var(--f5-ink); --x:80%; --xm:40%;">
-      <a class="folder__tab" href="#doc-curriculo">Currículo</a>
-      <div class="folder__body">
-        <a class="button button--big" href="#precos">Começar agora</a>
-        <p class="folder__note">A partir de R$&nbsp;19,90 por mês, com 7&nbsp;dias de garantia.</p>
-      </div>
-      <div class="folder__peek" aria-hidden="true">
-        <div class="a4">
-          <p class="a4__name">Juliana Martins</p>
-          <p class="a4__role">Assistente administrativa</p>
-          <p class="a4__h">Experiência</p>
-          <p class="a4__row"><span>Auxiliar administrativo, Grupo Ponto Certo</span><span>2023–2026</span></p>
-          <p class="a4__row"><span>Recepcionista, Clínica Bem Estar</span><span>2021–2023</span></p>
-          <p class="a4__h">Formação</p>
-          <p class="a4__p">Tecnólogo em Gestão Empresarial, 2024</p>
-        </div>
-      </div>
-    </div>
-  </nav>
 </header>
 
 <main id="conteudo">
 
-  <!-- ============ DEMONSTRAÇÃO (o elemento interativo) ============ -->
-  <section class="showcase" id="demo" aria-labelledby="demo-titulo">
-    <div class="showcase__plate" data-reveal>
-      <!--
-        VÍDEO DE DEMONSTRAÇÃO: quando tiver o vídeo, salve como assets/demo.mp4
-        (e um quadro como assets/demo-poster.jpg) e troque o bloco .demo abaixo por:
-        <video class="showcase__video" src="assets/demo.mp4" poster="assets/demo-poster.jpg"
-               autoplay muted loop playsinline aria-label="Demonstração do DocFy gerando um PDF"></video>
-      -->
-      <div class="demo" data-ui>
-        <div class="demo__bar">
-          <span class="demo__app">DocFy</span>
-          <span class="demo__file" id="demo-file">Nova proposta</span>
-        </div>
-        <div class="demo__fields">
-          <label class="demo__field">
-            <span>Seu nome ou empresa</span>
-            <input id="demo-nome" name="nome" type="text" value="Ana Ribeiro Design" maxlength="34" autocomplete="off" spellcheck="false">
-          </label>
-          <label class="demo__field">
-            <span>Cliente</span>
-            <input id="demo-cliente" name="cliente" type="text" value="Café Aurora" maxlength="30" autocomplete="off" spellcheck="false">
-          </label>
-        </div>
-        <div class="demo__page">
-          <div class="a4 a4--demo" id="demo-a4">
-            <p class="a4__kind" id="demo-kind">Proposta comercial</p>
-            <p class="a4__title"><span id="demo-title">Identidade visual para</span> <span data-bind="cliente">Café Aurora</span></p>
-            <p class="a4__meta">Por <span data-bind="nome">Ana Ribeiro Design</span>, <span id="demo-date">13 de outubro de 2026</span></p>
-            <div id="demo-body">
-              <p class="a4__h">Apresentação</p>
-              <p class="a4__p">Uma marca que traduz o café da casa: acolhedora, direta e fácil de reconhecer na rua.</p>
-              <p class="a4__h">Investimento</p>
-              <p class="a4__row"><span>Logo, paleta e manual</span><span>R$ 1.800,00</span></p>
-            </div>
-          </div>
-        </div>
-      </div>
+  <!-- ============ TOPO ============ -->
+  <section class="hero" id="topo" aria-labelledby="hero-titulo">
+    <div class="hero__bg" aria-hidden="true">
+      <span class="aurora aurora--1"></span>
+      <span class="aurora aurora--2"></span>
+      <span class="aurora aurora--3"></span>
+      <span class="hero__grid"></span>
+      <span class="hero__grid hero__grid--glow"></span>
     </div>
 
-    <div class="showcase__side">
-      <div class="tabs" role="group" aria-label="Tipo de documento na demonstração" data-reveal style="--i:0">
-        <button type="button" class="tabs__btn" data-doc="entregavel" aria-pressed="false">Entregável</button>
-        <button type="button" class="tabs__btn" data-doc="orcamento" aria-pressed="false">Orçamento</button>
-        <button type="button" class="tabs__btn" data-doc="proposta" aria-pressed="true">Proposta</button>
-        <button type="button" class="tabs__btn" data-doc="contrato" aria-pressed="false">Contrato</button>
-        <button type="button" class="tabs__btn" data-doc="curriculo" aria-pressed="false">Currículo</button>
-      </div>
-      <div class="showcase__copy">
-        <h2 class="head" id="demo-titulo" data-reveal style="--i:1">Escreva, e o PDF se monta</h2>
-        <p data-reveal style="--i:2">Troque o nome ao lado e escolha o tipo de documento. Capa, cores, tipografia e espaçamento ficam por conta do DocFy. Você só cuida do que precisa dizer.</p>
-      </div>
-      <div class="cells" data-reveal style="--i:3">
-        <a class="cell cell--ink" href="#precos">Começar agora</a>
-        <a class="cell cell--tone" href="#modelos">Ver os 5 modelos</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ OS 5 TIPOS DE DOCUMENTO: folhas empilhadas ============ -->
-  <section class="docs" id="modelos" aria-labelledby="modelos-titulo">
-    <div class="docs__intro wrap">
-      <h2 class="head" id="modelos-titulo" data-reveal>Cinco documentos prontos</h2>
-      <p data-reveal style="--i:1">Cada tipo já vem com a estrutura certa. Você preenche, ele organiza.</p>
-    </div>
-
-    <div class="sheets" role="region" aria-label="Os cinco documentos. No celular, deslize para o lado." tabindex="0">
-      <!-- EXEMPLOS DE PDF: as folhas abaixo são desenhadas em HTML. Para usar PDFs reais,
-           exporte a primeira página como PNG em assets/exemplos/ e troque o .a4 por
-           <img src="assets/exemplos/entregavel.png" alt="Exemplo de relatório de entrega gerado pelo DocFy"> -->
-      <article class="sheet" id="doc-entregavel" style="--i:0; --c:var(--f1); --ci:var(--f1-ink); --cm:var(--f1-muted);">
-        <h3 class="sheet__name">Entregável</h3>
-        <p class="sheet__text">O relatório que fecha o projeto: o que foi feito, o que o cliente recebe e qual é o próximo passo. Fica fácil cobrar a última parcela.</p>
-        <div class="sheet__doc">
-          <div class="a4" data-ui role="img" aria-label="Exemplo de relatório de entrega gerado pelo DocFy">
-            <p class="a4__kind">Relatório de entrega</p>
-            <p class="a4__title">Identidade visual Café Aurora</p>
-            <p class="a4__meta">Ana Ribeiro Design, entregue em 12/10/2026</p>
-            <p class="a4__h">O que foi entregue</p>
-            <p class="a4__row"><span>Logo principal e variações</span><span class="ok">Concluído</span></p>
-            <p class="a4__row"><span>Paleta de cores e tipografia</span><span class="ok">Concluído</span></p>
-            <p class="a4__row"><span>Manual da marca, 12 páginas</span><span class="ok">Concluído</span></p>
-            <p class="a4__row"><span>Arquivos para impressão</span><span class="ok">Concluído</span></p>
-            <p class="a4__h">Próximo passo</p>
-            <p class="a4__p">Aplicação da marca nas embalagens e no cardápio, a partir de 20/10.</p>
-          </div>
+    <div class="hero__inner">
+      <div class="hero__text">
+        <p class="label" data-rise>gerador de documentos em pdf</p>
+        <h1 class="hero__title" id="hero-titulo" data-rise style="--d:1">PDF profissional <span class="grad">em 1&nbsp;minuto</span></h1>
+        <p class="hero__sub" data-rise style="--d:2">Entregável, orçamento, proposta, contrato e currículo com cara de agência. Você escreve, o DocFy monta o layout e entrega o PDF.</p>
+        <div class="hero__ctas" data-rise style="--d:3">
+          <a class="btn btn--primary btn--lg" href="#precos">Começar agora</a>
+          <a class="btn btn--ghost btn--lg" href="#como-funciona">Ver como funciona</a>
         </div>
-      </article>
+        <p class="hero__trust" data-rise style="--d:4">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M8.5 12.5l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          A partir de R$&nbsp;19,90/mês, com garantia de 7&nbsp;dias
+        </p>
+      </div>
 
-      <article class="sheet" id="doc-orcamento" style="--i:1; --c:var(--f2); --ci:var(--f2-ink); --cm:var(--f2-muted);">
-        <h3 class="sheet__name">Orçamento</h3>
-        <p class="sheet__text">Itens, quantidades e total já somados, com validade e forma de pagamento. Pronto para mandar no WhatsApp antes do concorrente.</p>
-        <div class="sheet__doc">
-          <div class="a4" data-ui role="img" aria-label="Exemplo de orçamento gerado pelo DocFy">
+      <!-- pilha de prévias flutuando (decorativa; o conteúdo real está na seção Modelos) -->
+      <div class="stack3d" id="stack3d" aria-hidden="true">
+        <div class="stack3d__glow"></div>
+        <div class="stack3d__inner" id="stack3d-inner">
+          <div class="float float--back"><div class="a4">
+            <p class="a4__name">Juliana Martins</p>
+            <p class="a4__role">Assistente administrativa, São Paulo</p>
+            <p class="a4__h">Experiência</p>
+            <p class="a4__row"><span>Grupo Ponto Certo</span><span>2023–2026</span></p>
+            <p class="a4__row"><span>Clínica Bem Estar</span><span>2021–2023</span></p>
+            <p class="a4__h">Formação</p>
+            <p class="a4__p">Tecnólogo em Gestão Empresarial, 2024</p>
+          </div></div>
+          <div class="float float--mid"><div class="a4">
             <p class="a4__kind">Orçamento nº 027</p>
             <p class="a4__title">Social media para Studio Lume</p>
-            <p class="a4__meta">Válido por 15 dias</p>
+            <p class="a4__meta">Válido por 15&nbsp;dias</p>
             <p class="a4__h">Itens</p>
-            <p class="a4__row"><span>Planejamento mensal</span><span>R$ 350,00</span></p>
-            <p class="a4__row"><span>Posts para o feed, 12 × R$ 40</span><span>R$ 480,00</span></p>
-            <p class="a4__row"><span>Stories, 20 × R$ 15</span><span>R$ 300,00</span></p>
-            <p class="a4__row a4__row--total"><span>Total</span><span>R$ 1.130,00</span></p>
-            <p class="a4__h">Pagamento</p>
-            <p class="a4__p">Pix à vista ou 2 vezes no cartão.</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="sheet" id="doc-proposta" style="--i:2; --c:var(--f3); --ci:var(--f3-ink); --cm:var(--f3-muted);">
-        <h3 class="sheet__name">Proposta</h3>
-        <p class="sheet__text">Apresentação, escopo, prazo e investimento numa capa que passa confiança antes de o cliente chegar no preço.</p>
-        <div class="sheet__doc">
-          <div class="a4" data-ui role="img" aria-label="Exemplo de proposta comercial gerada pelo DocFy">
+            <p class="a4__row"><span>Planejamento mensal</span><span>R$&nbsp;350,00</span></p>
+            <p class="a4__row"><span>Posts, 12 × R$&nbsp;40</span><span>R$&nbsp;480,00</span></p>
+            <p class="a4__row"><span>Stories, 20 × R$&nbsp;15</span><span>R$&nbsp;300,00</span></p>
+            <p class="a4__row a4__row--total"><span>Total</span><span>R$&nbsp;1.130,00</span></p>
+          </div></div>
+          <div class="float float--front"><div class="a4">
             <p class="a4__kind">Proposta comercial</p>
             <p class="a4__title">Site institucional para Clínica Vita</p>
             <p class="a4__meta">Preparada por Rafael Costa, Web</p>
             <p class="a4__h">Escopo</p>
             <p class="a4__row"><span>Cinco páginas e blog</span><span>Incluso</span></p>
             <p class="a4__row"><span>Agendamento pelo WhatsApp</span><span>Incluso</span></p>
-            <p class="a4__row"><span>Prazo de entrega</span><span>30 dias</span></p>
-            <p class="a4__row a4__row--total"><span>Investimento</span><span>R$ 2.400,00</span></p>
-            <p class="a4__h">Por que agora</p>
-            <p class="a4__p">Pacientes procuram a clínica no Google antes de ligar. O site responde por você.</p>
-          </div>
+            <p class="a4__row"><span>Prazo de entrega</span><span>30&nbsp;dias</span></p>
+            <p class="a4__row a4__row--total"><span>Investimento</span><span>R$&nbsp;2.400,00</span></p>
+          </div></div>
         </div>
-      </article>
-
-      <article class="sheet" id="doc-contrato" style="--i:3; --c:var(--f4); --ci:var(--f4-ink); --cm:var(--f4-muted);">
-        <h3 class="sheet__name">Contrato</h3>
-        <p class="sheet__text">Partes, objeto, valor, prazo e espaço para assinatura, em cláusulas organizadas. Sério sem ser frio, e claro para os dois lados.</p>
-        <div class="sheet__doc">
-          <div class="a4" data-ui role="img" aria-label="Exemplo de contrato de prestação de serviços gerado pelo DocFy">
-            <p class="a4__kind">Contrato de prestação de serviços</p>
-            <p class="a4__title">Edição de vídeos para o canal Rota Leve</p>
-            <p class="a4__meta">Entre Bruno Alves (contratado) e Rota Leve Turismo (contratante)</p>
-            <p class="a4__h">Cláusula 1. Do objeto</p>
-            <p class="a4__p">Edição de 8 vídeos por mês, com até 2 rodadas de ajuste cada.</p>
-            <p class="a4__h">Cláusula 2. Do valor</p>
-            <p class="a4__p">R$ 1.200,00 por mês, pagos até o dia 5 via Pix.</p>
-            <div class="a4__sign"><span>Contratado</span><span>Contratante</span></div>
-          </div>
-        </div>
-      </article>
-
-      <article class="sheet" id="doc-curriculo" style="--i:4; --c:var(--f5); --ci:var(--f5-ink); --cm:var(--f5-muted);">
-        <h3 class="sheet__name">Currículo</h3>
-        <p class="sheet__text">Experiência, formação e habilidades num layout limpo, fácil de ler na tela do recrutador e no papel.</p>
-        <div class="sheet__doc">
-          <div class="a4" data-ui role="img" aria-label="Exemplo de currículo gerado pelo DocFy">
-            <p class="a4__name">Juliana Martins</p>
-            <p class="a4__role">Assistente administrativa, São Paulo</p>
-            <p class="a4__h">Experiência</p>
-            <p class="a4__row"><span>Auxiliar administrativo, Grupo Ponto Certo</span><span>2023–2026</span></p>
-            <p class="a4__row"><span>Recepcionista, Clínica Bem Estar</span><span>2021–2023</span></p>
-            <p class="a4__h">Formação</p>
-            <p class="a4__p">Tecnólogo em Gestão Empresarial, 2024</p>
-            <p class="a4__h">Habilidades</p>
-            <p class="a4__p">Excel avançado, atendimento ao cliente, rotinas fiscais, emissão de notas.</p>
-          </div>
-        </div>
-      </article>
+      </div>
     </div>
   </section>
 
-  <!-- ============ COMO FUNCIONA: o recibo ============ -->
+  <!-- ============ MINI-EDITOR INTERATIVO ============ -->
+  <section class="demo-sec" id="demo" aria-labelledby="demo-titulo">
+    <div class="wrap demo-sec__grid">
+      <div class="demo-sec__copy">
+        <p class="label" data-reveal>experimente agora</p>
+        <h2 class="h2" id="demo-titulo" data-reveal style="--d:1">Escreva, e o PDF se monta</h2>
+        <p class="lead" data-reveal style="--d:2">Troque o nome, escolha o tipo de documento e veja o resultado. Capa, cores, tipografia e espaçamento ficam por conta do DocFy.</p>
+        <div class="pills" role="group" aria-label="Tipo de documento na demonstração" data-reveal style="--d:3">
+          <button type="button" class="pill" data-doc="entregavel" aria-pressed="false">Entregável</button>
+          <button type="button" class="pill" data-doc="orcamento" aria-pressed="false">Orçamento</button>
+          <button type="button" class="pill" data-doc="proposta" aria-pressed="true">Proposta</button>
+          <button type="button" class="pill" data-doc="contrato" aria-pressed="false">Contrato</button>
+          <button type="button" class="pill" data-doc="curriculo" aria-pressed="false">Currículo</button>
+        </div>
+      </div>
+
+      <div class="window glow-card" data-reveal style="--d:2">
+        <!--
+          VÍDEO DE DEMONSTRAÇÃO: quando tiver o vídeo, salve em assets/demo.mp4 (e um quadro em
+          assets/demo-poster.jpg) e troque o conteúdo desta janela por:
+          <video class="window__video" src="assets/demo.mp4" poster="assets/demo-poster.jpg"
+                 autoplay muted loop playsinline aria-label="Demonstração do DocFy gerando um PDF"></video>
+        -->
+        <div class="window__bar">
+          <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="window__file" id="demo-file">Nova proposta</span>
+        </div>
+        <div class="window__fields">
+          <label class="field">
+            <span>Seu nome ou empresa</span>
+            <input id="demo-nome" name="nome" type="text" value="Ana Ribeiro Design" maxlength="34" autocomplete="off" spellcheck="false">
+          </label>
+          <label class="field">
+            <span>Cliente</span>
+            <input id="demo-cliente" name="cliente" type="text" value="Café Aurora" maxlength="30" autocomplete="off" spellcheck="false">
+          </label>
+        </div>
+        <div class="window__page">
+          <div class="a4 a4--demo" id="demo-a4">
+            <p class="a4__kind" id="demo-kind">Proposta comercial</p>
+            <p class="a4__title"><span id="demo-title">Identidade visual para</span> <span data-bind="cliente">Café Aurora</span></p>
+            <p class="a4__meta">Por <span data-bind="nome">Ana Ribeiro Design</span>, <span id="demo-date">14 de outubro de 2026</span></p>
+            <div id="demo-body">
+              <p class="a4__h">Apresentação</p>
+              <p class="a4__p">Uma marca que traduz a casa: acolhedora, direta e fácil de reconhecer na rua.</p>
+              <p class="a4__h">Investimento</p>
+              <p class="a4__row"><span>Logo, paleta e manual</span><span>R$&nbsp;1.800,00</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- contadores -->
+    <div class="wrap">
+      <dl class="stats glass" data-reveal>
+        <div class="stat"><dt class="label">tipos de documento</dt><dd class="stat__n" data-count="5">5</dd></div>
+        <div class="stat"><dt class="label">dias de garantia</dt><dd class="stat__n" data-count="7">7</dd></div>
+        <div class="stat"><dt class="label">em pdf, sem marca d’água</dt><dd class="stat__n" data-count="100" data-suffix="%">100%</dd></div>
+        <div class="stat"><dt class="label">para montar um documento</dt><dd class="stat__n" data-count="1" data-suffix=" min">1&nbsp;min</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============ OS 5 DOCUMENTOS ============ -->
+  <section class="docs" id="modelos" aria-labelledby="modelos-titulo">
+    <div class="wrap docs__head">
+      <p class="label" data-reveal>os modelos</p>
+      <h2 class="h2" id="modelos-titulo" data-reveal style="--d:1">Cinco documentos prontos</h2>
+      <p class="lead" data-reveal style="--d:2">Cada tipo já vem com a estrutura certa. Você preenche, ele organiza.</p>
+    </div>
+
+    <div class="docs__track" id="docs-track">
+      <div class="docs__sticky">
+        <div class="wrap docs__grid">
+          <ol class="docs__list" role="list">
+            <li><button type="button" class="docs__item is-active" data-i="0" aria-pressed="true" aria-describedby="doc-desc-0">
+              <span class="docs__name">Entregável</span>
+              <span class="docs__desc" id="doc-desc-0">O relatório que fecha o projeto: o que foi feito, o que o cliente recebe e o próximo passo. Fica fácil cobrar a última parcela.</span>
+              <span class="docs__bar" aria-hidden="true"><i></i></span>
+            </button></li>
+            <li><button type="button" class="docs__item" data-i="1" aria-pressed="false" aria-describedby="doc-desc-1">
+              <span class="docs__name">Orçamento</span>
+              <span class="docs__desc" id="doc-desc-1">Itens, quantidades e total já somados, com validade e forma de pagamento. Pronto para mandar no WhatsApp antes do concorrente.</span>
+              <span class="docs__bar" aria-hidden="true"><i></i></span>
+            </button></li>
+            <li><button type="button" class="docs__item" data-i="2" aria-pressed="false" aria-describedby="doc-desc-2">
+              <span class="docs__name">Proposta</span>
+              <span class="docs__desc" id="doc-desc-2">Apresentação, escopo, prazo e investimento numa capa que passa confiança antes de o cliente chegar no preço.</span>
+              <span class="docs__bar" aria-hidden="true"><i></i></span>
+            </button></li>
+            <li><button type="button" class="docs__item" data-i="3" aria-pressed="false" aria-describedby="doc-desc-3">
+              <span class="docs__name">Contrato</span>
+              <span class="docs__desc" id="doc-desc-3">Partes, objeto, valor, prazo e espaço para assinatura, em cláusulas organizadas. Sério sem ser frio.</span>
+              <span class="docs__bar" aria-hidden="true"><i></i></span>
+            </button></li>
+            <li><button type="button" class="docs__item" data-i="4" aria-pressed="false" aria-describedby="doc-desc-4">
+              <span class="docs__name">Currículo</span>
+              <span class="docs__desc" id="doc-desc-4">Experiência, formação e habilidades num layout limpo, fácil de ler na tela do recrutador e no papel.</span>
+              <span class="docs__bar" aria-hidden="true"><i></i></span>
+            </button></li>
+          </ol>
+
+          <div class="docs__stage" id="docs-stage">
+            <div class="docs__halo" aria-hidden="true"></div>
+            <!-- EXEMPLOS DE PDF: folhas desenhadas em HTML. Para usar PDFs reais, exporte a primeira
+                 página como PNG em assets/exemplos/ e troque cada .a4 por
+                 <img src="assets/exemplos/entregavel.png" width="600" height="848" alt="Exemplo de relatório de entrega gerado pelo DocFy"> -->
+            <div class="a4 docs__page is-active" role="img" aria-label="Exemplo de relatório de entrega gerado pelo DocFy">
+              <p class="a4__kind">Relatório de entrega</p>
+              <p class="a4__title">Identidade visual Café Aurora</p>
+              <p class="a4__meta">Ana Ribeiro Design, entregue em 12/10/2026</p>
+              <p class="a4__h">O que foi entregue</p>
+              <p class="a4__row"><span>Logo principal e variações</span><span class="ok">Concluído</span></p>
+              <p class="a4__row"><span>Paleta de cores e tipografia</span><span class="ok">Concluído</span></p>
+              <p class="a4__row"><span>Manual da marca, 12 páginas</span><span class="ok">Concluído</span></p>
+              <p class="a4__row"><span>Arquivos para impressão</span><span class="ok">Concluído</span></p>
+              <p class="a4__h">Próximo passo</p>
+              <p class="a4__p">Aplicação da marca nas embalagens e no cardápio, a partir de 20/10.</p>
+            </div>
+            <div class="a4 docs__page" role="img" aria-label="Exemplo de orçamento gerado pelo DocFy">
+              <p class="a4__kind">Orçamento nº 027</p>
+              <p class="a4__title">Social media para Studio Lume</p>
+              <p class="a4__meta">Válido por 15&nbsp;dias</p>
+              <p class="a4__h">Itens</p>
+              <p class="a4__row"><span>Planejamento mensal</span><span>R$&nbsp;350,00</span></p>
+              <p class="a4__row"><span>Posts para o feed, 12 × R$&nbsp;40</span><span>R$&nbsp;480,00</span></p>
+              <p class="a4__row"><span>Stories, 20 × R$&nbsp;15</span><span>R$&nbsp;300,00</span></p>
+              <p class="a4__row a4__row--total"><span>Total</span><span>R$&nbsp;1.130,00</span></p>
+              <p class="a4__h">Pagamento</p>
+              <p class="a4__p">Pix à vista ou 2 vezes no cartão.</p>
+            </div>
+            <div class="a4 docs__page" role="img" aria-label="Exemplo de proposta comercial gerada pelo DocFy">
+              <p class="a4__kind">Proposta comercial</p>
+              <p class="a4__title">Site institucional para Clínica Vita</p>
+              <p class="a4__meta">Preparada por Rafael Costa, Web</p>
+              <p class="a4__h">Escopo</p>
+              <p class="a4__row"><span>Cinco páginas e blog</span><span>Incluso</span></p>
+              <p class="a4__row"><span>Agendamento pelo WhatsApp</span><span>Incluso</span></p>
+              <p class="a4__row"><span>Prazo de entrega</span><span>30&nbsp;dias</span></p>
+              <p class="a4__row a4__row--total"><span>Investimento</span><span>R$&nbsp;2.400,00</span></p>
+              <p class="a4__h">Por que agora</p>
+              <p class="a4__p">Pacientes procuram a clínica no Google antes de ligar. O site responde por você.</p>
+            </div>
+            <div class="a4 docs__page" role="img" aria-label="Exemplo de contrato de prestação de serviços gerado pelo DocFy">
+              <p class="a4__kind">Contrato de prestação de serviços</p>
+              <p class="a4__title">Edição de vídeos para o canal Rota Leve</p>
+              <p class="a4__meta">Entre Bruno Alves (contratado) e Rota Leve Turismo (contratante)</p>
+              <p class="a4__h">Cláusula 1. Do objeto</p>
+              <p class="a4__p">Edição de 8 vídeos por mês, com até 2 rodadas de ajuste cada.</p>
+              <p class="a4__h">Cláusula 2. Do valor</p>
+              <p class="a4__p">R$&nbsp;1.200,00 por mês, pagos até o dia 5 via Pix.</p>
+              <div class="a4__sign"><span>Contratado</span><span>Contratante</span></div>
+            </div>
+            <div class="a4 docs__page" role="img" aria-label="Exemplo de currículo gerado pelo DocFy">
+              <p class="a4__name">Juliana Martins</p>
+              <p class="a4__role">Assistente administrativa, São Paulo</p>
+              <p class="a4__h">Experiência</p>
+              <p class="a4__row"><span>Auxiliar administrativo, Grupo Ponto Certo</span><span>2023–2026</span></p>
+              <p class="a4__row"><span>Recepcionista, Clínica Bem Estar</span><span>2021–2023</span></p>
+              <p class="a4__h">Formação</p>
+              <p class="a4__p">Tecnólogo em Gestão Empresarial, 2024</p>
+              <p class="a4__h">Habilidades</p>
+              <p class="a4__p">Excel avançado, atendimento ao cliente, rotinas fiscais, emissão de notas.</p>
+            </div>
+          </div>
+
+          <p class="docs__caption" id="docs-caption" aria-live="polite">O relatório que fecha o projeto: o que foi feito, o que o cliente recebe e o próximo passo. Fica fácil cobrar a última parcela.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COMO FUNCIONA ============ -->
   <section class="how" id="como-funciona" aria-labelledby="como-titulo">
-    <div class="how__copy">
-      <h2 class="head" id="como-titulo" data-reveal>Do texto ao PDF</h2>
-      <p data-reveal style="--i:1">Três passos, sem programa para instalar e sem saber design. Funciona no navegador do celular, do jeito que você já usa o TikTok.</p>
-      <a class="button" href="#precos" data-reveal style="--i:2">Começar agora</a>
-    </div>
+    <span class="how__grid" aria-hidden="true"></span>
+    <div class="wrap how__inner">
+      <div class="how__copy">
+        <p class="label" data-reveal>como funciona</p>
+        <h2 class="h2" id="como-titulo" data-reveal style="--d:1">Escolha o documento.<br>Escreva o conteúdo.<br><span class="grad">Baixe o PDF.</span></h2>
+        <p class="lead" data-reveal style="--d:2">Entregável, orçamento, proposta, contrato ou currículo: o DocFy cuida da parte visual (capa, tipografia, espaçamento e cores) enquanto você foca no que precisa dizer.</p>
+        <ol class="steps" role="list">
+          <li class="step glow-card" data-reveal style="--d:3"><span class="step__n">01</span><span>Escolha entre os 5 tipos de documento</span></li>
+          <li class="step glow-card" data-reveal style="--d:4"><span class="step__n">02</span><span>Preencha seus dados e os do cliente, e escreva as seções</span></li>
+          <li class="step glow-card" data-reveal style="--d:5"><span class="step__n">03</span><span>Gere e baixe o PDF pronto para enviar</span></li>
+        </ol>
+      </div>
 
-    <div class="slip" data-reveal style="--i:1">
-      <p class="slip__group">Escolha</p>
-      <p class="slip__row"><span>O tipo de documento</span><i aria-hidden="true"></i><span>1 toque</span></p>
-      <p class="slip__row"><span>O modelo visual</span><i aria-hidden="true"></i><span>1 toque</span></p>
-      <p class="slip__group">Escreva</p>
-      <p class="slip__row"><span>Seu nome e o do cliente</span><i aria-hidden="true"></i><span>seu texto</span></p>
-      <p class="slip__row"><span>Valores, prazos e seções</span><i aria-hidden="true"></i><span>seu texto</span></p>
-      <p class="slip__group">Baixe</p>
-      <p class="slip__row"><span>Capa, cores e tipografia</span><i aria-hidden="true"></i><span>automático</span></p>
-      <p class="slip__row"><span>Arquivo em PDF</span><i aria-hidden="true"></i><span>1 toque</span></p>
-      <p class="slip__total"><span>PDF pronto para enviar</span><span>1 min</span></p>
-    </div>
-  </section>
-
-  <!-- ============ PARA QUEM É: índice com prévia ============ -->
-  <section class="who" id="para-quem" aria-labelledby="quem-titulo">
-    <div class="who__head">
-      <h2 class="head head--light" id="quem-titulo" data-reveal>Para quem é</h2>
-      <p class="who__note" data-reveal style="--i:1">Se você manda proposta pelo WhatsApp ou currículo por e-mail, o DocFy foi feito para você.</p>
-    </div>
-
-    <div class="index">
-      <ul class="index__list">
-        <li class="index__row is-on" data-preview="0" data-reveal style="--i:0">
-          <span class="index__thumb" aria-hidden="true"><span class="mini"><b>Proposta</b><i>Clínica Vita</i></span></span>
-          <span class="index__text">
-            <span class="index__name">Freelancer</span>
-            <span class="index__desc">Proposta e relatório de entrega que mostram o valor do seu trabalho antes do preço.</span>
-          </span>
-        </li>
-        <li class="index__row" data-preview="1" data-reveal style="--i:1">
-          <span class="index__thumb" aria-hidden="true"><span class="mini"><b>Orçamento</b><i>Studio Lume</i></span></span>
-          <span class="index__text">
-            <span class="index__name">MEI</span>
-            <span class="index__desc">Orçamento e contrato com cara de empresa estabelecida, prontos para o WhatsApp.</span>
-          </span>
-        </li>
-        <li class="index__row" data-preview="2" data-reveal style="--i:2">
-          <span class="index__thumb" aria-hidden="true"><span class="mini"><b>Currículo</b><i>Juliana Martins</i></span></span>
-          <span class="index__text">
-            <span class="index__name">Quem busca emprego</span>
-            <span class="index__desc">Um currículo limpo e fácil de ler, que você atualiza em minutos para cada vaga.</span>
-          </span>
-        </li>
-      </ul>
-
-      <div class="index__frame" aria-hidden="true">
-        <div class="a4 is-on">
-          <p class="a4__kind">Proposta comercial</p>
-          <p class="a4__title">Site institucional para Clínica Vita</p>
-          <p class="a4__meta">Preparada por Rafael Costa, Web</p>
-          <p class="a4__h">Escopo</p>
-          <p class="a4__row"><span>Cinco páginas e blog</span><span>Incluso</span></p>
-          <p class="a4__row a4__row--total"><span>Investimento</span><span>R$ 2.400,00</span></p>
-        </div>
-        <div class="a4">
-          <p class="a4__kind">Orçamento nº 027</p>
-          <p class="a4__title">Social media para Studio Lume</p>
-          <p class="a4__meta">Válido por 15 dias</p>
-          <p class="a4__h">Itens</p>
-          <p class="a4__row"><span>Posts para o feed</span><span>R$ 480,00</span></p>
-          <p class="a4__row a4__row--total"><span>Total</span><span>R$ 1.130,00</span></p>
-        </div>
-        <div class="a4">
-          <p class="a4__name">Juliana Martins</p>
-          <p class="a4__role">Assistente administrativa, São Paulo</p>
-          <p class="a4__h">Experiência</p>
-          <p class="a4__row"><span>Grupo Ponto Certo</span><span>2023–2026</span></p>
-          <p class="a4__h">Habilidades</p>
-          <p class="a4__p">Excel avançado, atendimento, rotinas fiscais.</p>
-        </div>
+      <div class="slip" data-reveal style="--d:2">
+        <p class="slip__group">Escolha</p>
+        <p class="slip__row"><span>O tipo de documento</span><i aria-hidden="true"></i><span>1 toque</span></p>
+        <p class="slip__row"><span>O modelo visual</span><i aria-hidden="true"></i><span>1 toque</span></p>
+        <p class="slip__group">Escreva</p>
+        <p class="slip__row"><span>Seu nome e o do cliente</span><i aria-hidden="true"></i><span>seu texto</span></p>
+        <p class="slip__row"><span>Valores, prazos e seções</span><i aria-hidden="true"></i><span>seu texto</span></p>
+        <p class="slip__group">Baixe</p>
+        <p class="slip__row"><span>Capa, cores e tipografia</span><i aria-hidden="true"></i><span>automático</span></p>
+        <p class="slip__row"><span>Arquivo em PDF</span><i aria-hidden="true"></i><span>1 toque</span></p>
+        <p class="slip__total"><span>PDF pronto para enviar</span><span>1&nbsp;min</span></p>
       </div>
     </div>
   </section>
 
-  <!-- ============ PREÇOS: como um cardápio ============ -->
-  <section class="pricing" id="precos" aria-labelledby="precos-titulo">
-    <div class="pricing__head">
-      <h2 class="head" id="precos-titulo" data-reveal>Planos</h2>
-      <p data-reveal style="--i:1">Pagamento seguro pela Cakto. Garantia de 7 dias em qualquer plano.</p>
-    </div>
+  <!-- ============ MOMENTO CLARO: para quem é + planos ============ -->
+  <div class="light">
 
-    <div class="menu">
-      <div class="menu__group" data-reveal style="--i:1">
-        <h3 class="menu__title">Assinatura</h3>
-        <div class="menu__item">
-          <p class="menu__line"><span>Mensal</span><span class="nums">R$&nbsp;19,90<small>/mês</small></span></p>
-          <p class="menu__desc">Todos os cinco tipos de documento. Cancele quando quiser.</p>
-          <a class="button button--ink" href="https://pay.cakto.com.br/c2qqoes_1119576">Assinar mensal</a>
-        </div>
-        <div class="menu__item">
-          <p class="menu__line"><span>Trimestral</span><span class="nums">R$&nbsp;37<small>/trimestre</small></span></p>
-          <p class="menu__desc">O mais escolhido. Sai por R$&nbsp;12,33 por mês, 38% a menos que o mensal.</p>
-          <a class="button" href="https://pay.cakto.com.br/75ia2sn">Assinar trimestral</a>
+    <section class="who" id="para-quem" aria-labelledby="quem-titulo">
+      <div class="wrap">
+        <p class="label label--dark" data-reveal>para quem é</p>
+        <h2 class="h2 h2--xl" id="quem-titulo" data-reveal style="--d:1">Feito para quem vende o próprio trabalho</h2>
+
+        <div class="index">
+          <ul class="index__list" role="list">
+            <li class="index__row is-on" data-reveal style="--d:1">
+              <span class="index__thumb" aria-hidden="true"><span class="mini"><b>Proposta</b><i>Clínica Vita</i></span></span>
+              <span class="index__text">
+                <span class="index__name">Freelancer</span>
+                <span class="index__desc">Proposta e relatório de entrega que mostram o valor do seu trabalho antes do preço.</span>
+              </span>
+            </li>
+            <li class="index__row" data-reveal style="--d:2">
+              <span class="index__thumb" aria-hidden="true"><span class="mini"><b>Orçamento</b><i>Studio Lume</i></span></span>
+              <span class="index__text">
+                <span class="index__name">MEI</span>
+                <span class="index__desc">Orçamento e contrato com cara de empresa estabelecida, prontos para o WhatsApp.</span>
+              </span>
+            </li>
+            <li class="index__row" data-reveal style="--d:3">
+              <span class="index__thumb" aria-hidden="true"><span class="mini"><b>Currículo</b><i>Juliana Martins</i></span></span>
+              <span class="index__text">
+                <span class="index__name">Quem busca emprego</span>
+                <span class="index__desc">Um currículo limpo e fácil de ler, que você atualiza em minutos para cada vaga.</span>
+              </span>
+            </li>
+          </ul>
+
+          <div class="index__frame" aria-hidden="true">
+            <div class="a4 is-on">
+              <p class="a4__kind">Proposta comercial</p>
+              <p class="a4__title">Site institucional para Clínica Vita</p>
+              <p class="a4__meta">Preparada por Rafael Costa, Web</p>
+              <p class="a4__h">Escopo</p>
+              <p class="a4__row"><span>Cinco páginas e blog</span><span>Incluso</span></p>
+              <p class="a4__row a4__row--total"><span>Investimento</span><span>R$&nbsp;2.400,00</span></p>
+            </div>
+            <div class="a4">
+              <p class="a4__kind">Orçamento nº 027</p>
+              <p class="a4__title">Social media para Studio Lume</p>
+              <p class="a4__meta">Válido por 15&nbsp;dias</p>
+              <p class="a4__h">Itens</p>
+              <p class="a4__row"><span>Posts para o feed</span><span>R$&nbsp;480,00</span></p>
+              <p class="a4__row a4__row--total"><span>Total</span><span>R$&nbsp;1.130,00</span></p>
+            </div>
+            <div class="a4">
+              <p class="a4__name">Juliana Martins</p>
+              <p class="a4__role">Assistente administrativa, São Paulo</p>
+              <p class="a4__h">Experiência</p>
+              <p class="a4__row"><span>Grupo Ponto Certo</span><span>2023–2026</span></p>
+              <p class="a4__h">Habilidades</p>
+              <p class="a4__p">Excel avançado, atendimento, rotinas fiscais.</p>
+            </div>
+          </div>
         </div>
       </div>
+    </section>
 
-      <div class="menu__group" data-reveal style="--i:2">
-        <h3 class="menu__title">Nos dois planos</h3>
-        <div class="menu__item">
-          <p class="menu__line"><span>Documentos ilimitados</span><span>incluso</span></p>
-          <p class="menu__desc">Gere quantos PDFs precisar enquanto a assinatura estiver ativa.</p>
+    <section class="pricing" id="precos" aria-labelledby="precos-titulo">
+      <div class="wrap">
+        <div class="pricing__head">
+          <p class="label label--dark" data-reveal>planos</p>
+          <h2 class="h2 h2--xl" id="precos-titulo" data-reveal style="--d:1">Um preço justo, todos os documentos</h2>
+          <p class="lead lead--dark" data-reveal style="--d:2">Pagamento seguro pela Cakto. Garantia de 7&nbsp;dias em qualquer plano.</p>
         </div>
-        <div class="menu__item">
-          <p class="menu__line"><span>Garantia de 7 dias</span><span>incluso</span></p>
-          <p class="menu__desc">Não gostou? Peça o reembolso em até 7 dias, sem perguntas.</p>
+
+        <div class="plans">
+          <article class="plan glow-card" data-reveal style="--d:1">
+            <p class="label label--dark">mensal</p>
+            <p class="plan__price"><span class="nums">R$&nbsp;19,90</span><small>/mês</small></p>
+            <p class="plan__desc">Todos os 5 tipos de documento. Flexível, cancele quando quiser.</p>
+            <a class="btn btn--dark btn--block btn--lg" href="https://pay.cakto.com.br/c2qqoes_1119576">Assinar mensal</a>
+          </article>
+
+          <article class="plan plan--featured" data-reveal style="--d:2">
+            <p class="plan__badge">Mais escolhido</p>
+            <p class="label label--dark">trimestral</p>
+            <p class="plan__price"><span class="nums">R$&nbsp;37</span><small>/trimestre</small></p>
+            <p class="plan__desc">Sai por R$&nbsp;12,33 por mês, 38% a menos que o mensal.</p>
+            <a class="btn btn--primary btn--block btn--lg" href="https://pay.cakto.com.br/75ia2sn">Assinar trimestral</a>
+          </article>
         </div>
-        <div class="menu__item">
-          <p class="menu__line"><span>Acesso direto ao criador</span><span>incluso</span></p>
-          <p class="menu__desc">Tire dúvidas e sugira melhorias com quem faz o DocFy.</p>
-        </div>
-        <div class="menu__item">
-          <p class="menu__line"><span>Novos modelos primeiro</span><span>incluso</span></p>
-          <p class="menu__desc">Quem assina agora recebe os próximos modelos antes de todo mundo.</p>
-        </div>
+
+        <ul class="perks" role="list" data-reveal style="--d:2">
+          <li><b>Documentos ilimitados</b> enquanto a assinatura estiver ativa</li>
+          <li><b>Garantia de 7&nbsp;dias</b>, sem perguntas</li>
+          <li><b>Acesso direto ao criador</b> para dúvidas e sugestões</li>
+          <li><b>Novos modelos primeiro</b> para quem assina agora</li>
+        </ul>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 
   <!-- ============ DEPOIMENTOS (espaço pronto, oculto até ter depoimentos reais) ============
-       Para ativar: apague o atributo "hidden" da <section> abaixo e troque o texto
-       pelo depoimento real, com nome e ocupação de quem escreveu (e autorização). -->
+       Para ativar: apague o atributo "hidden" abaixo e troque o texto pelo depoimento real,
+       com nome e ocupação de quem escreveu (e autorização). -->
   <section class="letter" id="depoimentos" aria-labelledby="depo-titulo" hidden>
-    <h2 class="sr-only" id="depo-titulo">Depoimento</h2>
-    <figure class="letter__body">
-      <blockquote>
-        <p class="letter__open">Primeira frase do depoimento, a mais forte, em até duas linhas.</p>
-        <p>Continuação do depoimento: qual era o problema antes, o que mudou depois de usar o DocFy e um resultado concreto (um cliente fechado, uma vaga conseguida).</p>
-        <p>Fechamento curto, com a recomendação na voz de quem escreveu.</p>
-      </blockquote>
-      <figcaption><span>Nome Sobrenome</span><span>Ocupação, cidade</span></figcaption>
-    </figure>
+    <div class="wrap">
+      <h2 class="sr-only" id="depo-titulo">Depoimento</h2>
+      <figure class="letter__body glass">
+        <blockquote>
+          <p class="letter__open">Primeira frase do depoimento, a mais forte, em até duas linhas.</p>
+          <p>Continuação: qual era o problema antes, o que mudou com o DocFy e um resultado concreto.</p>
+        </blockquote>
+        <figcaption><span>Nome Sobrenome</span><span>Ocupação, cidade</span></figcaption>
+      </figure>
+    </div>
   </section>
 
-  <!-- ============ FAQ: respostas corridas ============ -->
+  <!-- ============ DÚVIDAS ============ -->
   <section class="faq" id="duvidas" aria-labelledby="faq-titulo">
-    <h2 class="head" id="faq-titulo" data-reveal>Dúvidas</h2>
-    <div class="faq__text" data-reveal style="--i:1">
-      <p><b>Preciso saber design?</b> Não. Você escolhe o tipo de documento, escreve o conteúdo e o DocFy cuida de capa, cores, tipografia e espaçamento.</p>
-      <p><b>Funciona no celular?</b> Sim, direto no navegador, no celular ou no computador. Não tem nada para instalar.</p>
-      <p><b>Quantos documentos posso gerar?</b> Sem limite artificial. Gere quantas propostas, orçamentos e currículos precisar durante a assinatura.</p>
-      <p><b>O PDF sai com marca d’água?</b> Não. O arquivo é seu, pronto para enviar ao cliente ou ao recrutador.</p>
-      <p><b>Posso cancelar quando quiser?</b> Sim, sem burocracia e sem multa.</p>
-      <p><b>E se eu não gostar?</b> Você tem 7 dias de garantia depois da compra. Pediu, devolvemos o valor.</p>
-      <p><b>Onde eu pago?</b> Na Cakto, a plataforma de pagamento do DocFy. Ao tocar em assinar, você vai direto para lá.</p>
-      <p><b>Como funciona o suporte?</b> Quem assina agora fala direto com o criador do DocFy para tirar dúvidas e sugerir melhorias.</p>
+    <div class="wrap faq__inner">
+      <div>
+        <p class="label" data-reveal>dúvidas</p>
+        <h2 class="h2" id="faq-titulo" data-reveal style="--d:1">Perguntas frequentes</h2>
+      </div>
+      <div class="faq__list">
+        <details class="qa glow-card" data-reveal>
+          <summary>Preciso saber design?<span class="qa__icon" aria-hidden="true"></span></summary>
+          <p>Não. Você escolhe o tipo de documento, escreve o conteúdo e o DocFy cuida de capa, cores, tipografia e espaçamento.</p>
+        </details>
+        <details class="qa glow-card" data-reveal style="--d:1">
+          <summary>Funciona no celular?<span class="qa__icon" aria-hidden="true"></span></summary>
+          <p>Sim, direto no navegador, no celular ou no computador. Não tem nada para instalar.</p>
+        </details>
+        <details class="qa glow-card" data-reveal style="--d:2">
+          <summary>Quantos documentos posso gerar?<span class="qa__icon" aria-hidden="true"></span></summary>
+          <p>Sem limite artificial. Gere quantas propostas, orçamentos e currículos precisar durante a assinatura.</p>
+        </details>
+        <details class="qa glow-card" data-reveal style="--d:3">
+          <summary>O PDF sai com marca d’água?<span class="qa__icon" aria-hidden="true"></span></summary>
+          <p>Não. O arquivo é seu, pronto para enviar ao cliente ou ao recrutador.</p>
+        </details>
+        <details class="qa glow-card" data-reveal style="--d:4">
+          <summary>Posso cancelar quando quiser?<span class="qa__icon" aria-hidden="true"></span></summary>
+          <p>Sim, sem burocracia e sem multa.</p>
+        </details>
+        <details class="qa glow-card" data-reveal style="--d:5">
+          <summary>E se eu não gostar?<span class="qa__icon" aria-hidden="true"></span></summary>
+          <p>Você tem 7&nbsp;dias de garantia depois da compra. Pediu, devolvemos o valor.</p>
+        </details>
+        <details class="qa glow-card" data-reveal style="--d:6">
+          <summary>Onde eu pago?<span class="qa__icon" aria-hidden="true"></span></summary>
+          <p>Na Cakto, a plataforma de pagamento do DocFy. Ao tocar em assinar, você vai direto para lá.</p>
+        </details>
+        <details class="qa glow-card" data-reveal style="--d:7">
+          <summary>Como funciona o suporte?<span class="qa__icon" aria-hidden="true"></span></summary>
+          <p>Quem assina agora fala direto com o criador do DocFy para tirar dúvidas e sugerir melhorias.</p>
+        </details>
+      </div>
     </div>
-  </section>
 
-  <!-- ============ CHAMADA FINAL: o primeiro passo já aberto ============ -->
-  <section class="cta" id="comecar" aria-labelledby="cta-titulo">
-    <div class="cta__copy">
-      <h2 class="cta__line" id="cta-titulo" data-reveal>Comece seu PDF hoje</h2>
-      <p data-reveal style="--i:1">Escolha o plano, conclua o pagamento na Cakto e monte seu primeiro documento. Se não gostar, a garantia de 7 dias devolve seu dinheiro.</p>
-    </div>
-
-    <div class="dialog" data-ui data-reveal style="--i:2">
-      <p class="dialog__title">Assinar o DocFy</p>
-      <fieldset class="seg">
-        <legend class="sr-only">Escolha o plano</legend>
-        <label class="seg__opt">
-          <input type="radio" name="plano" value="mensal" data-href="https://pay.cakto.com.br/c2qqoes_1119576" data-label="Assinar mensal" data-sum="R$ 19,90 por mês. Cancele quando quiser.">
-          <span>Mensal<b>R$ 19,90</b></span>
-        </label>
-        <label class="seg__opt">
-          <input type="radio" name="plano" value="trimestral" checked data-href="https://pay.cakto.com.br/75ia2sn" data-label="Assinar trimestral" data-sum="R$ 37 a cada 3 meses, sai por R$ 12,33 por mês.">
-          <span>Trimestral<b>R$ 37</b></span>
-        </label>
-      </fieldset>
-      <p class="dialog__sum" id="cta-sum" aria-live="polite">R$ 37 a cada 3 meses, sai por R$ 12,33 por mês.</p>
-      <a class="button button--ink button--block" id="cta-buy" href="https://pay.cakto.com.br/75ia2sn">Assinar trimestral</a>
-      <noscript><p class="dialog__alt"><a class="link-plain" href="https://pay.cakto.com.br/c2qqoes_1119576">Prefere o mensal? Assinar mensal</a></p></noscript>
-      <p class="dialog__fine">7 dias de garantia. Pagamento pela Cakto.</p>
+    <!-- ============ CHAMADA FINAL (bloco azul) ============ -->
+    <div class="wrap">
+      <div class="cta" id="comecar" data-reveal>
+        <span class="cta__grid" aria-hidden="true"></span>
+        <div class="cta__copy">
+          <h2 class="cta__title" id="cta-titulo">Comece seu PDF hoje</h2>
+          <p>Escolha o plano, conclua o pagamento na Cakto e monte seu primeiro documento. Se não gostar, a garantia de 7&nbsp;dias devolve seu dinheiro.</p>
+        </div>
+        <div class="dialog">
+          <p class="dialog__title">Assinar o DocFy</p>
+          <fieldset class="seg">
+            <legend class="sr-only">Escolha o plano</legend>
+            <label class="seg__opt">
+              <input type="radio" name="plano" value="mensal" data-href="https://pay.cakto.com.br/c2qqoes_1119576" data-label="Assinar mensal" data-sum="R$&nbsp;19,90 por mês. Cancele quando quiser.">
+              <span>Mensal<b>R$&nbsp;19,90</b></span>
+            </label>
+            <label class="seg__opt">
+              <input type="radio" name="plano" value="trimestral" checked data-href="https://pay.cakto.com.br/75ia2sn" data-label="Assinar trimestral" data-sum="R$&nbsp;37 a cada 3 meses, sai por R$&nbsp;12,33 por mês.">
+              <span>Trimestral<b>R$&nbsp;37</b></span>
+            </label>
+          </fieldset>
+          <p class="dialog__sum" id="cta-sum" aria-live="polite">R$&nbsp;37 a cada 3 meses, sai por R$&nbsp;12,33 por mês.</p>
+          <a class="btn btn--primary btn--block btn--lg" id="cta-buy" href="https://pay.cakto.com.br/75ia2sn">Assinar trimestral</a>
+          <noscript><p class="dialog__alt"><a href="https://pay.cakto.com.br/c2qqoes_1119576">Prefere o mensal? Assinar mensal</a></p></noscript>
+          <p class="dialog__fine">7&nbsp;dias de garantia. Pagamento pela Cakto.</p>
+        </div>
+      </div>
     </div>
   </section>
 </main>
 
-<!-- ============ RODAPÉ: o verso da folha ============ -->
+<!-- ============ RODAPÉ ============ -->
 <footer class="footer">
-  <div class="footer__cols">
-    <div>
-      <p class="footer__first">DocFy</p>
-      <p>PDFs profissionais para freelancers, MEIs e quem busca emprego.</p>
+  <div class="wrap">
+    <div class="footer__cols">
+      <div>
+        <p class="footer__first" translate="no">DocFy</p>
+        <p>PDFs profissionais para freelancers, MEIs e quem busca emprego.</p>
+      </div>
+      <nav aria-label="Rodapé">
+        <p class="footer__first">Navegação</p>
+        <ul role="list">
+          <li><a href="#modelos">Modelos</a></li>
+          <li><a href="#como-funciona">Como funciona</a></li>
+          <li><a href="#precos">Planos</a></li>
+          <li><a href="#duvidas">Dúvidas</a></li>
+        </ul>
+      </nav>
+      <div>
+        <p class="footer__first">Assinar</p>
+        <ul role="list">
+          <li><a href="https://pay.cakto.com.br/c2qqoes_1119576">Mensal, R$&nbsp;19,90</a></li>
+          <li><a href="https://pay.cakto.com.br/75ia2sn">Trimestral, R$&nbsp;37</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__first">Garantia</p>
+        <p>7&nbsp;dias em qualquer plano. Pagamento seguro pela Cakto.</p>
+      </div>
     </div>
-    <nav aria-label="Rodapé">
-      <p class="footer__first">Navegação</p>
-      <ul>
-        <li><a class="link" href="#modelos">Modelos</a></li>
-        <li><a class="link" href="#como-funciona">Como funciona</a></li>
-        <li><a class="link" href="#precos">Planos</a></li>
-        <li><a class="link" href="#duvidas">Dúvidas</a></li>
-      </ul>
-    </nav>
-    <div>
-      <p class="footer__first">Assinar</p>
-      <ul>
-        <li><a class="link" href="https://pay.cakto.com.br/c2qqoes_1119576">Mensal, R$ 19,90</a></li>
-        <li><a class="link" href="https://pay.cakto.com.br/75ia2sn">Trimestral, R$ 37</a></li>
-      </ul>
-    </div>
-    <div>
-      <p class="footer__first">Garantia</p>
-      <p>7 dias em qualquer plano. Pagamento seguro pela Cakto.</p>
-    </div>
+    <p class="footer__mark" translate="no" aria-hidden="true">Doc<span>Fy</span></p>
+    <p class="footer__legal">© 2026 DocFy. Todos os direitos reservados.</p>
   </div>
-  <p class="footer__mark" translate="no" aria-hidden="true">DocFy</p>
-  <p class="footer__legal">© 2026 DocFy. Todos os direitos reservados.</p>
 </footer>
-
-<!-- Barra de compra no celular: aparece depois do topo e some perto dos planos -->
-<div class="buybar" id="buybar" aria-hidden="true">
-  <p class="buybar__price">A partir de <b>R$&nbsp;19,90</b>/mês</p>
-  <a class="button" href="#precos" tabindex="-1">Começar agora</a>
-</div>
 
 <script src="js/main.js" defer></script>
 </body>
