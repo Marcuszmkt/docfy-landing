@@ -2,536 +2,469 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DocFy: crie documentos profissionais em minutos</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#060911;
-    --surface:#0d1220;
-    --surface-2:#131a2c;
-    --border:#1c2438;
-    --accent:#0071e3;
-    --accent-light:#4da3ff;
-    --text:#f5f7fa;
-    --muted:#8b93a7;
-  }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:'Inter',sans-serif;
-    -webkit-font-smoothing:antialiased;
-  }
-  .font-display{font-family:'Space Grotesk',sans-serif;}
-  .font-mono{font-family:'IBM Plex Mono',monospace;}
-
-  .glow-radial{
-    background:radial-gradient(circle at 50% 30%, rgba(0,113,227,0.25), transparent 60%);
-  }
-
-  /* Signature element: dog-eared corner, echoing the DocFy logo fold */
-  .fold-card{
-    position:relative;
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:14px;
-    overflow:hidden;
-  }
-  .fold-card::before{
-    content:"";
-    position:absolute;
-    top:0; right:0;
-    width:0; height:0;
-    border-style:solid;
-    border-width:0 26px 26px 0;
-    border-color:transparent var(--accent) transparent transparent;
-    opacity:0.9;
-    transition:transform .25s ease;
-  }
-  .fold-card:hover::before{ transform:scale(1.15); }
-
-  .eyebrow{
-    font-family:'IBM Plex Mono',monospace;
-    letter-spacing:0.12em;
-    text-transform:uppercase;
-    font-size:0.72rem;
-    color:var(--accent-light);
-  }
-
-  .btn-primary{
-    background:linear-gradient(180deg,#1d84ec,#0060c4);
-    box-shadow:0 8px 24px rgba(0,113,227,0.35), inset 0 1px 0 rgba(255,255,255,0.15);
-  }
-  .btn-primary:hover{ box-shadow:0 10px 30px rgba(0,113,227,0.5), inset 0 1px 0 rgba(255,255,255,0.2); }
-
-  .reveal{ opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease; }
-  .reveal.in{ opacity:1; transform:translateY(0); }
-
-  .grid-lines{
-    background-image:
-      linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
-    background-size:44px 44px;
-  }
-
-  .price-highlight{
-    border-color:var(--accent) !important;
-    box-shadow:0 0 0 1px var(--accent), 0 20px 50px rgba(0,113,227,0.25);
-  }
-
-  details > summary{ list-style:none; cursor:pointer; }
-  details > summary::-webkit-details-marker{ display:none; }
-  .chev{ transition:transform .25s ease; }
-  details[open] .chev{ transform:rotate(45deg); }
-
-  /* Scroll progress bar */
-  #scroll-progress{
-    position:fixed; top:0; left:0; height:3px; width:0%;
-    background:linear-gradient(90deg,var(--accent-light),var(--accent));
-    z-index:60;
-  }
-
-  /* Cursor-following spotlight in the hero */
-  .spotlight{
-    position:absolute; inset:0; pointer-events:none;
-    background:radial-gradient(600px circle at var(--x,50%) var(--y,25%), rgba(77,163,255,0.18), transparent 60%);
-  }
-
-  /* 3D tilt on featured document mockups */
-  .tilt-card{ transform-style:preserve-3d; transition:transform .2s ease-out; will-change:transform; }
-
-  /* Animated gradient border on the featured price card */
-  .price-highlight{ position:relative; border-color:transparent !important; }
-  .price-highlight::after{
-    content:"";
-    position:absolute; inset:0;
-    border-radius:inherit;
-    padding:1.5px;
-    background:conic-gradient(from var(--angle,0deg), var(--accent), var(--accent-light), #7cc4ff, var(--accent));
-    -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite:xor;
-    mask-composite:exclude;
-    pointer-events:none;
-    animation:spin-border 4s linear infinite;
-  }
-  @property --angle{ syntax:'<angle>'; initial-value:0deg; inherits:false; }
-  @keyframes spin-border{ to{ --angle:360deg; } }
-
-  .stat-number{ font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:2.5rem; line-height:1; }
-
-  @media (prefers-reduced-motion: reduce){
-    .price-highlight::after{ animation:none; }
-    .reveal{ transition:none; }
-    .tilt-card{ transition:none; }
-  }
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DocFy: PDF profissional em 1 minuto</title>
+<meta name="description" content="Proposta, orçamento, contrato, currículo e relatório de entrega com cara de agência. Você escreve, o DocFy monta o layout e entrega o PDF. A partir de R$ 19,90 por mês.">
+<meta name="theme-color" content="#0a0e17">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="DocFy: PDF profissional em 1 minuto">
+<meta property="og:description" content="Proposta, orçamento, contrato, currículo e relatório de entrega com cara de agência, direto do celular.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/style.css">
+<script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
 
-<div id="scroll-progress"></div>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
 
-<!-- NAV -->
-<header class="sticky top-0 z-50 backdrop-blur-md bg-[#060911]/80 border-b border-[var(--border)]">
-  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-    <div class="flex items-center gap-2">
-      <svg width="26" height="26" viewBox="0 0 48 48" fill="none">
-        <path d="M12 6C10.3431 6 9 7.34315 9 9V39C9 40.6569 10.3431 42 12 42H36C37.6569 42 39 40.6569 39 39V17L28 6H12Z" stroke="white" stroke-width="2.5" stroke-linejoin="round"/>
-        <path d="M28 6V13C28 15.2091 29.7909 17 32 17H39L28 6Z" fill="#0071E3"/>
-        <line x1="15" y1="24" x2="30" y2="24" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="15" y1="30" x2="30" y2="30" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+<!-- ============ TOPO: a pilha de pastas ============ -->
+<header class="hero" id="topo">
+  <div class="topbar">
+    <a class="wordmark" translate="no" href="#topo" aria-label="DocFy, voltar ao início">
+      <svg class="wordmark__icon" width="28" height="28" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <path d="M12 6C10.34 6 9 7.34 9 9V39C9 40.66 10.34 42 12 42H36C37.66 42 39 40.66 39 39V17L28 6H12Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M28 6V13C28 15.21 29.79 17 32 17H39L28 6Z" fill="#2d8cff"/>
+        <path d="M15 24H30M15 30H30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
       </svg>
-      <span class="font-display font-bold text-lg">Doc<span class="text-[var(--accent)]">Fy</span></span>
-    </div>
-    <a href="#precos" class="btn-primary text-sm font-semibold px-5 py-2.5 rounded-full text-white">Começar agora</a>
+      <span>Doc<span class="wordmark__fy">Fy</span></span>
+    </a>
+    <a class="topbar__link link" href="#precos">Planos</a>
   </div>
+
+  <div class="hero__text wrap">
+    <h1 class="display lines">
+      <span class="line"><span data-line style="--i:0">PDF profissional</span></span>
+      <span class="line"><span data-line style="--i:1">em 1&nbsp;minuto</span></span>
+    </h1>
+    <p class="hero__sub" data-rise style="--i:3">Proposta, orçamento, contrato, currículo e relatório de entrega com cara de agência. Você escreve, o DocFy monta o layout e entrega o PDF.</p>
+  </div>
+
+  <nav class="stack" aria-label="Os cinco tipos de documento">
+    <div class="folder" style="--n:0; --c:var(--f1); --ci:var(--f1-ink); --x:4%; --xm:0%;">
+      <a class="folder__tab" href="#doc-entregavel">Entregável</a>
+    </div>
+    <div class="folder" style="--n:1; --c:var(--f2); --ci:var(--f2-ink); --x:23%; --xm:34%;">
+      <a class="folder__tab" href="#doc-orcamento">Orçamento</a>
+    </div>
+    <div class="folder" style="--n:2; --c:var(--f3); --ci:var(--f3-ink); --x:42%; --xm:66%;">
+      <a class="folder__tab" href="#doc-proposta">Proposta</a>
+    </div>
+    <div class="folder" style="--n:3; --c:var(--f4); --ci:var(--f4-ink); --x:61%; --xm:6%;">
+      <a class="folder__tab" href="#doc-contrato">Contrato</a>
+    </div>
+    <div class="folder folder--front" style="--n:4; --c:var(--f5); --ci:var(--f5-ink); --x:80%; --xm:40%;">
+      <a class="folder__tab" href="#doc-curriculo">Currículo</a>
+      <div class="folder__body">
+        <a class="button button--big" href="#precos">Começar agora</a>
+        <p class="folder__note">A partir de R$&nbsp;19,90 por mês, com 7&nbsp;dias de garantia.</p>
+      </div>
+      <div class="folder__peek" aria-hidden="true">
+        <div class="a4">
+          <p class="a4__name">Juliana Martins</p>
+          <p class="a4__role">Assistente administrativa</p>
+          <p class="a4__h">Experiência</p>
+          <p class="a4__row"><span>Auxiliar administrativo, Grupo Ponto Certo</span><span>2023–2026</span></p>
+          <p class="a4__row"><span>Recepcionista, Clínica Bem Estar</span><span>2021–2023</span></p>
+          <p class="a4__h">Formação</p>
+          <p class="a4__p">Tecnólogo em Gestão Empresarial, 2024</p>
+        </div>
+      </div>
+    </div>
+  </nav>
 </header>
 
-<!-- HERO -->
-<section class="relative overflow-hidden grid-lines spotlight-zone">
-  <div class="glow-radial absolute inset-0"></div>
-  <div class="spotlight"></div>
-  <div class="max-w-6xl mx-auto px-6 pt-20 pb-24 relative grid md:grid-cols-2 gap-14 items-center">
-    <div class="reveal">
-      <p class="eyebrow mb-4">gerador de documentos pdf</p>
-      <h1 class="font-display font-bold text-4xl md:text-5xl leading-tight mb-6">
-        Documentos que parecem ter saído de uma agência.<br>
-        <span class="text-[var(--accent-light)]">Feitos por você, em minutos.</span>
-      </h1>
-      <p class="text-[var(--muted)] text-lg mb-8 max-w-md">
-        Propostas, relatórios e materiais com identidade visual premium,
-        sem contratar designer e sem lutar com o Word.
-      </p>
-      <div class="flex flex-wrap gap-3">
-        <a href="#precos" class="btn-primary text-white font-semibold px-6 py-3.5 rounded-full">Criar meu primeiro documento</a>
-        <a href="#solucao" class="border border-[var(--border)] text-[var(--text)] font-medium px-6 py-3.5 rounded-full hover:border-[var(--accent)] transition">Ver como funciona</a>
-      </div>
-      <div class="flex items-center gap-2 mt-8 text-sm text-[var(--muted)]">
-        <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4" stroke="#4da3ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="#4da3ff" stroke-width="2"/></svg>
-        Garantia de 7 dias, sem risco
-      </div>
-    </div>
-    <div class="reveal">
-      <div class="fold-card tilt-card p-3">
-        <div class="bg-white rounded-lg p-6 aspect-[3/4] max-w-xs mx-auto flex flex-col">
-          <div class="inline-block self-start bg-[var(--accent)] text-white text-[10px] font-bold font-mono px-3 py-1 rounded-full mb-4">DOCUMENTO PROFISSIONAL</div>
-          <h3 class="text-black font-display font-bold text-2xl leading-tight mb-2">Proposta<br>Comercial</h3>
-          <div class="h-0.5 w-16 bg-[var(--accent)] mb-3"></div>
-          <p class="text-gray-500 text-xs mb-4">Solução completa para impulsionar seu negócio</p>
-          <div class="text-gray-400 text-[10px] font-mono mb-1">APRESENTAÇÃO</div>
-          <div class="space-y-1.5">
-            <div class="h-1.5 bg-gray-100 rounded w-full"></div>
-            <div class="h-1.5 bg-gray-100 rounded w-5/6"></div>
-            <div class="h-1.5 bg-gray-100 rounded w-3/4"></div>
-          </div>
-          <div class="mt-auto text-[10px] text-gray-400">Elaborado por <span class="font-semibold text-gray-600">DocFy</span></div>
+<main id="conteudo">
+
+  <!-- ============ DEMONSTRAÇÃO (o elemento interativo) ============ -->
+  <section class="showcase" id="demo" aria-labelledby="demo-titulo">
+    <div class="showcase__plate" data-reveal>
+      <!--
+        VÍDEO DE DEMONSTRAÇÃO: quando tiver o vídeo, salve como assets/demo.mp4
+        (e um quadro como assets/demo-poster.jpg) e troque o bloco .demo abaixo por:
+        <video class="showcase__video" src="assets/demo.mp4" poster="assets/demo-poster.jpg"
+               autoplay muted loop playsinline aria-label="Demonstração do DocFy gerando um PDF"></video>
+      -->
+      <div class="demo" data-ui>
+        <div class="demo__bar">
+          <span class="demo__app">DocFy</span>
+          <span class="demo__file" id="demo-file">Nova proposta</span>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROBLEMA -->
-<section class="max-w-6xl mx-auto px-6 py-20">
-  <div class="reveal max-w-2xl mb-14">
-    <p class="eyebrow mb-3">o problema</p>
-    <h2 class="font-display font-bold text-3xl md:text-4xl leading-tight">
-      Você sabe o que fazer.<br>O documento é que não ajuda.
-    </h2>
-  </div>
-  <div class="grid md:grid-cols-3 gap-5">
-    <div class="reveal fold-card p-6">
-      <div class="font-mono text-[var(--accent-light)] text-xs mb-3">SEM DESIGNER</div>
-      <p class="text-[var(--muted)]">Word e Google Docs entregam o conteúdo certo, mas com a cara errada: genérica, datada, sem identidade.</p>
-    </div>
-    <div class="reveal fold-card p-6">
-      <div class="font-mono text-[var(--accent-light)] text-xs mb-3">SEM TEMPO</div>
-      <p class="text-[var(--muted)]">Montar um layout do zero no Canva ou InDesign toma horas que você não tem entre um cliente e outro.</p>
-    </div>
-    <div class="reveal fold-card p-6">
-      <div class="font-mono text-[var(--accent-light)] text-xs mb-3">SEM CONSISTÊNCIA</div>
-      <p class="text-[var(--muted)]">Cada proposta fica diferente da anterior, e sua marca nunca parece a mesma duas vezes.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ANTES E DEPOIS -->
-<section class="max-w-6xl mx-auto px-6 py-20 border-t border-[var(--border)]">
-  <div class="reveal max-w-2xl mb-14 mx-auto text-center">
-    <p class="eyebrow mb-3">a diferença é visual</p>
-    <h2 class="font-display font-bold text-3xl md:text-4xl leading-tight">O mesmo conteúdo. Uma percepção completamente diferente.</h2>
-  </div>
-  <div class="grid md:grid-cols-2 gap-10 items-center relative">
-    <div class="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-14 h-14 rounded-full bg-[var(--accent)] text-white items-center justify-center font-display font-bold shadow-[0_8px_24px_rgba(0,113,227,0.45)]">VS</div>
-
-    <div class="reveal">
-      <p class="eyebrow mb-3 text-center text-[var(--muted)]">antes · word / docs padrão</p>
-      <div class="bg-[#e9e9e7] rounded-lg p-6 aspect-[3/4] max-w-xs mx-auto flex flex-col">
-        <h3 class="text-gray-800 font-serif font-bold text-xl mb-3">Proposta Comercial</h3>
-        <p class="text-gray-600 text-xs mb-4 font-serif">Solução completa para impulsionar seu negócio.</p>
-        <div class="space-y-2">
-          <div class="h-1 bg-gray-400/50 rounded w-full"></div>
-          <div class="h-1 bg-gray-400/50 rounded w-full"></div>
-          <div class="h-1 bg-gray-400/50 rounded w-5/6"></div>
-          <div class="h-1 bg-gray-400/50 rounded w-full"></div>
-          <div class="h-1 bg-gray-400/50 rounded w-4/5"></div>
-          <div class="h-1 bg-gray-400/50 rounded w-full"></div>
+        <div class="demo__fields">
+          <label class="demo__field">
+            <span>Seu nome ou empresa</span>
+            <input id="demo-nome" name="nome" type="text" value="Ana Ribeiro Design" maxlength="34" autocomplete="off" spellcheck="false">
+          </label>
+          <label class="demo__field">
+            <span>Cliente</span>
+            <input id="demo-cliente" name="cliente" type="text" value="Café Aurora" maxlength="30" autocomplete="off" spellcheck="false">
+          </label>
         </div>
-        <div class="mt-auto text-[10px] text-gray-500 font-serif">Página 1 de 4</div>
-      </div>
-    </div>
-
-    <div class="reveal">
-      <p class="eyebrow mb-3 text-center">depois · gerado com docfy</p>
-      <div class="fold-card tilt-card p-3">
-        <div class="bg-white rounded-lg p-6 aspect-[3/4] max-w-xs mx-auto flex flex-col">
-          <div class="inline-block self-start bg-[var(--accent)] text-white text-[10px] font-bold font-mono px-3 py-1 rounded-full mb-4">MÉTODO COMPROVADO</div>
-          <h3 class="text-black font-display font-bold text-2xl leading-tight mb-2">Proposta<br>Comercial</h3>
-          <div class="h-0.5 w-16 bg-[var(--accent)] mb-3"></div>
-          <p class="text-gray-500 text-xs mb-4">Solução completa para impulsionar seu negócio</p>
-          <div class="text-gray-400 text-[10px] font-mono mb-1">APRESENTAÇÃO</div>
-          <div class="space-y-1.5">
-            <div class="h-1.5 bg-gray-100 rounded w-full"></div>
-            <div class="h-1.5 bg-gray-100 rounded w-5/6"></div>
-            <div class="h-1.5 bg-gray-100 rounded w-3/4"></div>
-          </div>
-          <div class="mt-auto text-[10px] text-gray-400">Elaborado por <span class="font-semibold text-gray-600">DocFy</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SOLUÇÃO -->
-<section id="solucao" class="max-w-6xl mx-auto px-6 py-20 border-t border-[var(--border)]">
-  <div class="grid md:grid-cols-2 gap-14 items-center">
-    <div class="reveal order-2 md:order-1">
-      <div class="fold-card p-3">
-        <img src="https://placehold.co/900x560/0d1220/1c2438?text=" class="rounded-lg w-full opacity-0 absolute" alt="">
-        <div class="bg-[#0a0e1a] rounded-lg p-4 border border-[var(--border)]">
-          <div class="flex items-center gap-2 mb-4 pb-3 border-b border-[var(--border)]">
-            <div class="w-2.5 h-2.5 rounded-full bg-[#ff5f57]"></div>
-            <div class="w-2.5 h-2.5 rounded-full bg-[#febc2e]"></div>
-            <div class="w-2.5 h-2.5 rounded-full bg-[#28c840]"></div>
-          </div>
-          <div class="grid grid-cols-3 gap-3">
-            <div class="col-span-1 space-y-2">
-              <div class="text-[10px] font-mono text-[var(--muted)] mb-2">CAPA</div>
-              <div class="h-6 bg-[var(--surface-2)] rounded"></div>
-              <div class="h-6 bg-[var(--surface-2)] rounded"></div>
-              <div class="h-6 bg-[var(--surface-2)] rounded"></div>
-              <div class="text-[10px] font-mono text-[var(--muted)] mt-3 mb-2">DESIGN</div>
-              <div class="h-6 bg-[var(--surface-2)] rounded"></div>
-            </div>
-            <div class="col-span-2 bg-white rounded p-4">
-              <div class="inline-block bg-[var(--accent)] text-white text-[8px] font-bold px-2 py-0.5 rounded-full mb-2">MÉTODO COMPROVADO</div>
-              <div class="h-3 bg-gray-800 rounded w-3/4 mb-2"></div>
-              <div class="h-3 bg-gray-800 rounded w-1/2 mb-3"></div>
-              <div class="h-1 bg-gray-100 rounded w-full mb-1"></div>
-              <div class="h-1 bg-gray-100 rounded w-full mb-1"></div>
-              <div class="h-1 bg-gray-100 rounded w-5/6"></div>
+        <div class="demo__page">
+          <div class="a4 a4--demo" id="demo-a4">
+            <p class="a4__kind" id="demo-kind">Proposta comercial</p>
+            <p class="a4__title"><span id="demo-title">Identidade visual para</span> <span data-bind="cliente">Café Aurora</span></p>
+            <p class="a4__meta">Por <span data-bind="nome">Ana Ribeiro Design</span>, <span id="demo-date">13 de outubro de 2026</span></p>
+            <div id="demo-body">
+              <p class="a4__h">Apresentação</p>
+              <p class="a4__p">Uma marca que traduz o café da casa: acolhedora, direta e fácil de reconhecer na rua.</p>
+              <p class="a4__h">Investimento</p>
+              <p class="a4__row"><span>Logo, paleta e manual</span><span>R$ 1.800,00</span></p>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="reveal order-1 md:order-2">
-      <p class="eyebrow mb-3">a solução</p>
-      <h2 class="font-display font-bold text-3xl md:text-4xl leading-tight mb-5">
-        Escolha um template.<br>Escreva o conteúdo.<br>Baixe o PDF.
-      </h2>
-      <p class="text-[var(--muted)] text-lg mb-6">
-        O DocFy cuida da parte visual (tipografia, espaçamento, cores, capa),
-        enquanto você foca só no que precisa dizer.
-      </p>
-      <ul class="space-y-3 font-mono text-sm text-[var(--muted)]">
-        <li class="flex gap-3"><span class="text-[var(--accent-light)]">01</span> Preencha título, autor e descrição</li>
-        <li class="flex gap-3"><span class="text-[var(--accent-light)]">02</span> Escreva as seções em Markdown simples</li>
-        <li class="flex gap-3"><span class="text-[var(--accent-light)]">03</span> Gere e baixe seu PDF pronto</li>
+
+    <div class="showcase__side">
+      <div class="tabs" role="group" aria-label="Tipo de documento na demonstração" data-reveal style="--i:0">
+        <button type="button" class="tabs__btn" data-doc="entregavel" aria-pressed="false">Entregável</button>
+        <button type="button" class="tabs__btn" data-doc="orcamento" aria-pressed="false">Orçamento</button>
+        <button type="button" class="tabs__btn" data-doc="proposta" aria-pressed="true">Proposta</button>
+        <button type="button" class="tabs__btn" data-doc="contrato" aria-pressed="false">Contrato</button>
+        <button type="button" class="tabs__btn" data-doc="curriculo" aria-pressed="false">Currículo</button>
+      </div>
+      <div class="showcase__copy">
+        <h2 class="head" id="demo-titulo" data-reveal style="--i:1">Escreva, e o PDF se monta</h2>
+        <p data-reveal style="--i:2">Troque o nome ao lado e escolha o tipo de documento. Capa, cores, tipografia e espaçamento ficam por conta do DocFy. Você só cuida do que precisa dizer.</p>
+      </div>
+      <div class="cells" data-reveal style="--i:3">
+        <a class="cell cell--ink" href="#precos">Começar agora</a>
+        <a class="cell cell--tone" href="#modelos">Ver os 5 modelos</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ OS 5 TIPOS DE DOCUMENTO: folhas empilhadas ============ -->
+  <section class="docs" id="modelos" aria-labelledby="modelos-titulo">
+    <div class="docs__intro wrap">
+      <h2 class="head" id="modelos-titulo" data-reveal>Cinco documentos prontos</h2>
+      <p data-reveal style="--i:1">Cada tipo já vem com a estrutura certa. Você preenche, ele organiza.</p>
+    </div>
+
+    <div class="sheets" role="region" aria-label="Os cinco documentos. No celular, deslize para o lado." tabindex="0">
+      <!-- EXEMPLOS DE PDF: as folhas abaixo são desenhadas em HTML. Para usar PDFs reais,
+           exporte a primeira página como PNG em assets/exemplos/ e troque o .a4 por
+           <img src="assets/exemplos/entregavel.png" alt="Exemplo de relatório de entrega gerado pelo DocFy"> -->
+      <article class="sheet" id="doc-entregavel" style="--i:0; --c:var(--f1); --ci:var(--f1-ink); --cm:var(--f1-muted);">
+        <h3 class="sheet__name">Entregável</h3>
+        <p class="sheet__text">O relatório que fecha o projeto: o que foi feito, o que o cliente recebe e qual é o próximo passo. Fica fácil cobrar a última parcela.</p>
+        <div class="sheet__doc">
+          <div class="a4" data-ui role="img" aria-label="Exemplo de relatório de entrega gerado pelo DocFy">
+            <p class="a4__kind">Relatório de entrega</p>
+            <p class="a4__title">Identidade visual Café Aurora</p>
+            <p class="a4__meta">Ana Ribeiro Design, entregue em 12/10/2026</p>
+            <p class="a4__h">O que foi entregue</p>
+            <p class="a4__row"><span>Logo principal e variações</span><span class="ok">Concluído</span></p>
+            <p class="a4__row"><span>Paleta de cores e tipografia</span><span class="ok">Concluído</span></p>
+            <p class="a4__row"><span>Manual da marca, 12 páginas</span><span class="ok">Concluído</span></p>
+            <p class="a4__row"><span>Arquivos para impressão</span><span class="ok">Concluído</span></p>
+            <p class="a4__h">Próximo passo</p>
+            <p class="a4__p">Aplicação da marca nas embalagens e no cardápio, a partir de 20/10.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="sheet" id="doc-orcamento" style="--i:1; --c:var(--f2); --ci:var(--f2-ink); --cm:var(--f2-muted);">
+        <h3 class="sheet__name">Orçamento</h3>
+        <p class="sheet__text">Itens, quantidades e total já somados, com validade e forma de pagamento. Pronto para mandar no WhatsApp antes do concorrente.</p>
+        <div class="sheet__doc">
+          <div class="a4" data-ui role="img" aria-label="Exemplo de orçamento gerado pelo DocFy">
+            <p class="a4__kind">Orçamento nº 027</p>
+            <p class="a4__title">Social media para Studio Lume</p>
+            <p class="a4__meta">Válido por 15 dias</p>
+            <p class="a4__h">Itens</p>
+            <p class="a4__row"><span>Planejamento mensal</span><span>R$ 350,00</span></p>
+            <p class="a4__row"><span>Posts para o feed, 12 × R$ 40</span><span>R$ 480,00</span></p>
+            <p class="a4__row"><span>Stories, 20 × R$ 15</span><span>R$ 300,00</span></p>
+            <p class="a4__row a4__row--total"><span>Total</span><span>R$ 1.130,00</span></p>
+            <p class="a4__h">Pagamento</p>
+            <p class="a4__p">Pix à vista ou 2 vezes no cartão.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="sheet" id="doc-proposta" style="--i:2; --c:var(--f3); --ci:var(--f3-ink); --cm:var(--f3-muted);">
+        <h3 class="sheet__name">Proposta</h3>
+        <p class="sheet__text">Apresentação, escopo, prazo e investimento numa capa que passa confiança antes de o cliente chegar no preço.</p>
+        <div class="sheet__doc">
+          <div class="a4" data-ui role="img" aria-label="Exemplo de proposta comercial gerada pelo DocFy">
+            <p class="a4__kind">Proposta comercial</p>
+            <p class="a4__title">Site institucional para Clínica Vita</p>
+            <p class="a4__meta">Preparada por Rafael Costa, Web</p>
+            <p class="a4__h">Escopo</p>
+            <p class="a4__row"><span>Cinco páginas e blog</span><span>Incluso</span></p>
+            <p class="a4__row"><span>Agendamento pelo WhatsApp</span><span>Incluso</span></p>
+            <p class="a4__row"><span>Prazo de entrega</span><span>30 dias</span></p>
+            <p class="a4__row a4__row--total"><span>Investimento</span><span>R$ 2.400,00</span></p>
+            <p class="a4__h">Por que agora</p>
+            <p class="a4__p">Pacientes procuram a clínica no Google antes de ligar. O site responde por você.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="sheet" id="doc-contrato" style="--i:3; --c:var(--f4); --ci:var(--f4-ink); --cm:var(--f4-muted);">
+        <h3 class="sheet__name">Contrato</h3>
+        <p class="sheet__text">Partes, objeto, valor, prazo e espaço para assinatura, em cláusulas organizadas. Sério sem ser frio, e claro para os dois lados.</p>
+        <div class="sheet__doc">
+          <div class="a4" data-ui role="img" aria-label="Exemplo de contrato de prestação de serviços gerado pelo DocFy">
+            <p class="a4__kind">Contrato de prestação de serviços</p>
+            <p class="a4__title">Edição de vídeos para o canal Rota Leve</p>
+            <p class="a4__meta">Entre Bruno Alves (contratado) e Rota Leve Turismo (contratante)</p>
+            <p class="a4__h">Cláusula 1. Do objeto</p>
+            <p class="a4__p">Edição de 8 vídeos por mês, com até 2 rodadas de ajuste cada.</p>
+            <p class="a4__h">Cláusula 2. Do valor</p>
+            <p class="a4__p">R$ 1.200,00 por mês, pagos até o dia 5 via Pix.</p>
+            <div class="a4__sign"><span>Contratado</span><span>Contratante</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="sheet" id="doc-curriculo" style="--i:4; --c:var(--f5); --ci:var(--f5-ink); --cm:var(--f5-muted);">
+        <h3 class="sheet__name">Currículo</h3>
+        <p class="sheet__text">Experiência, formação e habilidades num layout limpo, fácil de ler na tela do recrutador e no papel.</p>
+        <div class="sheet__doc">
+          <div class="a4" data-ui role="img" aria-label="Exemplo de currículo gerado pelo DocFy">
+            <p class="a4__name">Juliana Martins</p>
+            <p class="a4__role">Assistente administrativa, São Paulo</p>
+            <p class="a4__h">Experiência</p>
+            <p class="a4__row"><span>Auxiliar administrativo, Grupo Ponto Certo</span><span>2023–2026</span></p>
+            <p class="a4__row"><span>Recepcionista, Clínica Bem Estar</span><span>2021–2023</span></p>
+            <p class="a4__h">Formação</p>
+            <p class="a4__p">Tecnólogo em Gestão Empresarial, 2024</p>
+            <p class="a4__h">Habilidades</p>
+            <p class="a4__p">Excel avançado, atendimento ao cliente, rotinas fiscais, emissão de notas.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ COMO FUNCIONA: o recibo ============ -->
+  <section class="how" id="como-funciona" aria-labelledby="como-titulo">
+    <div class="how__copy">
+      <h2 class="head" id="como-titulo" data-reveal>Do texto ao PDF</h2>
+      <p data-reveal style="--i:1">Três passos, sem programa para instalar e sem saber design. Funciona no navegador do celular, do jeito que você já usa o TikTok.</p>
+      <a class="button" href="#precos" data-reveal style="--i:2">Começar agora</a>
+    </div>
+
+    <div class="slip" data-reveal style="--i:1">
+      <p class="slip__group">Escolha</p>
+      <p class="slip__row"><span>O tipo de documento</span><i aria-hidden="true"></i><span>1 toque</span></p>
+      <p class="slip__row"><span>O modelo visual</span><i aria-hidden="true"></i><span>1 toque</span></p>
+      <p class="slip__group">Escreva</p>
+      <p class="slip__row"><span>Seu nome e o do cliente</span><i aria-hidden="true"></i><span>seu texto</span></p>
+      <p class="slip__row"><span>Valores, prazos e seções</span><i aria-hidden="true"></i><span>seu texto</span></p>
+      <p class="slip__group">Baixe</p>
+      <p class="slip__row"><span>Capa, cores e tipografia</span><i aria-hidden="true"></i><span>automático</span></p>
+      <p class="slip__row"><span>Arquivo em PDF</span><i aria-hidden="true"></i><span>1 toque</span></p>
+      <p class="slip__total"><span>PDF pronto para enviar</span><span>1 min</span></p>
+    </div>
+  </section>
+
+  <!-- ============ PARA QUEM É: índice com prévia ============ -->
+  <section class="who" id="para-quem" aria-labelledby="quem-titulo">
+    <div class="who__head">
+      <h2 class="head head--light" id="quem-titulo" data-reveal>Para quem é</h2>
+      <p class="who__note" data-reveal style="--i:1">Se você manda proposta pelo WhatsApp ou currículo por e-mail, o DocFy foi feito para você.</p>
+    </div>
+
+    <div class="index">
+      <ul class="index__list">
+        <li class="index__row is-on" data-preview="0" data-reveal style="--i:0">
+          <span class="index__thumb" aria-hidden="true"><span class="mini"><b>Proposta</b><i>Clínica Vita</i></span></span>
+          <span class="index__text">
+            <span class="index__name">Freelancer</span>
+            <span class="index__desc">Proposta e relatório de entrega que mostram o valor do seu trabalho antes do preço.</span>
+          </span>
+        </li>
+        <li class="index__row" data-preview="1" data-reveal style="--i:1">
+          <span class="index__thumb" aria-hidden="true"><span class="mini"><b>Orçamento</b><i>Studio Lume</i></span></span>
+          <span class="index__text">
+            <span class="index__name">MEI</span>
+            <span class="index__desc">Orçamento e contrato com cara de empresa estabelecida, prontos para o WhatsApp.</span>
+          </span>
+        </li>
+        <li class="index__row" data-preview="2" data-reveal style="--i:2">
+          <span class="index__thumb" aria-hidden="true"><span class="mini"><b>Currículo</b><i>Juliana Martins</i></span></span>
+          <span class="index__text">
+            <span class="index__name">Quem busca emprego</span>
+            <span class="index__desc">Um currículo limpo e fácil de ler, que você atualiza em minutos para cada vaga.</span>
+          </span>
+        </li>
+      </ul>
+
+      <div class="index__frame" aria-hidden="true">
+        <div class="a4 is-on">
+          <p class="a4__kind">Proposta comercial</p>
+          <p class="a4__title">Site institucional para Clínica Vita</p>
+          <p class="a4__meta">Preparada por Rafael Costa, Web</p>
+          <p class="a4__h">Escopo</p>
+          <p class="a4__row"><span>Cinco páginas e blog</span><span>Incluso</span></p>
+          <p class="a4__row a4__row--total"><span>Investimento</span><span>R$ 2.400,00</span></p>
+        </div>
+        <div class="a4">
+          <p class="a4__kind">Orçamento nº 027</p>
+          <p class="a4__title">Social media para Studio Lume</p>
+          <p class="a4__meta">Válido por 15 dias</p>
+          <p class="a4__h">Itens</p>
+          <p class="a4__row"><span>Posts para o feed</span><span>R$ 480,00</span></p>
+          <p class="a4__row a4__row--total"><span>Total</span><span>R$ 1.130,00</span></p>
+        </div>
+        <div class="a4">
+          <p class="a4__name">Juliana Martins</p>
+          <p class="a4__role">Assistente administrativa, São Paulo</p>
+          <p class="a4__h">Experiência</p>
+          <p class="a4__row"><span>Grupo Ponto Certo</span><span>2023–2026</span></p>
+          <p class="a4__h">Habilidades</p>
+          <p class="a4__p">Excel avançado, atendimento, rotinas fiscais.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PREÇOS: como um cardápio ============ -->
+  <section class="pricing" id="precos" aria-labelledby="precos-titulo">
+    <div class="pricing__head">
+      <h2 class="head" id="precos-titulo" data-reveal>Planos</h2>
+      <p data-reveal style="--i:1">Pagamento seguro pela Cakto. Garantia de 7 dias em qualquer plano.</p>
+    </div>
+
+    <div class="menu">
+      <div class="menu__group" data-reveal style="--i:1">
+        <h3 class="menu__title">Assinatura</h3>
+        <div class="menu__item">
+          <p class="menu__line"><span>Mensal</span><span class="nums">R$&nbsp;19,90<small>/mês</small></span></p>
+          <p class="menu__desc">Todos os cinco tipos de documento. Cancele quando quiser.</p>
+          <a class="button button--ink" href="https://pay.cakto.com.br/c2qqoes_1119576">Assinar mensal</a>
+        </div>
+        <div class="menu__item">
+          <p class="menu__line"><span>Trimestral</span><span class="nums">R$&nbsp;37<small>/trimestre</small></span></p>
+          <p class="menu__desc">O mais escolhido. Sai por R$&nbsp;12,33 por mês, 38% a menos que o mensal.</p>
+          <a class="button" href="https://pay.cakto.com.br/75ia2sn">Assinar trimestral</a>
+        </div>
+      </div>
+
+      <div class="menu__group" data-reveal style="--i:2">
+        <h3 class="menu__title">Nos dois planos</h3>
+        <div class="menu__item">
+          <p class="menu__line"><span>Documentos ilimitados</span><span>incluso</span></p>
+          <p class="menu__desc">Gere quantos PDFs precisar enquanto a assinatura estiver ativa.</p>
+        </div>
+        <div class="menu__item">
+          <p class="menu__line"><span>Garantia de 7 dias</span><span>incluso</span></p>
+          <p class="menu__desc">Não gostou? Peça o reembolso em até 7 dias, sem perguntas.</p>
+        </div>
+        <div class="menu__item">
+          <p class="menu__line"><span>Acesso direto ao criador</span><span>incluso</span></p>
+          <p class="menu__desc">Tire dúvidas e sugira melhorias com quem faz o DocFy.</p>
+        </div>
+        <div class="menu__item">
+          <p class="menu__line"><span>Novos modelos primeiro</span><span>incluso</span></p>
+          <p class="menu__desc">Quem assina agora recebe os próximos modelos antes de todo mundo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DEPOIMENTOS (espaço pronto, oculto até ter depoimentos reais) ============
+       Para ativar: apague o atributo "hidden" da <section> abaixo e troque o texto
+       pelo depoimento real, com nome e ocupação de quem escreveu (e autorização). -->
+  <section class="letter" id="depoimentos" aria-labelledby="depo-titulo" hidden>
+    <h2 class="sr-only" id="depo-titulo">Depoimento</h2>
+    <figure class="letter__body">
+      <blockquote>
+        <p class="letter__open">Primeira frase do depoimento, a mais forte, em até duas linhas.</p>
+        <p>Continuação do depoimento: qual era o problema antes, o que mudou depois de usar o DocFy e um resultado concreto (um cliente fechado, uma vaga conseguida).</p>
+        <p>Fechamento curto, com a recomendação na voz de quem escreveu.</p>
+      </blockquote>
+      <figcaption><span>Nome Sobrenome</span><span>Ocupação, cidade</span></figcaption>
+    </figure>
+  </section>
+
+  <!-- ============ FAQ: respostas corridas ============ -->
+  <section class="faq" id="duvidas" aria-labelledby="faq-titulo">
+    <h2 class="head" id="faq-titulo" data-reveal>Dúvidas</h2>
+    <div class="faq__text" data-reveal style="--i:1">
+      <p><b>Preciso saber design?</b> Não. Você escolhe o tipo de documento, escreve o conteúdo e o DocFy cuida de capa, cores, tipografia e espaçamento.</p>
+      <p><b>Funciona no celular?</b> Sim, direto no navegador, no celular ou no computador. Não tem nada para instalar.</p>
+      <p><b>Quantos documentos posso gerar?</b> Sem limite artificial. Gere quantas propostas, orçamentos e currículos precisar durante a assinatura.</p>
+      <p><b>O PDF sai com marca d’água?</b> Não. O arquivo é seu, pronto para enviar ao cliente ou ao recrutador.</p>
+      <p><b>Posso cancelar quando quiser?</b> Sim, sem burocracia e sem multa.</p>
+      <p><b>E se eu não gostar?</b> Você tem 7 dias de garantia depois da compra. Pediu, devolvemos o valor.</p>
+      <p><b>Onde eu pago?</b> Na Cakto, a plataforma de pagamento do DocFy. Ao tocar em assinar, você vai direto para lá.</p>
+      <p><b>Como funciona o suporte?</b> Quem assina agora fala direto com o criador do DocFy para tirar dúvidas e sugerir melhorias.</p>
+    </div>
+  </section>
+
+  <!-- ============ CHAMADA FINAL: o primeiro passo já aberto ============ -->
+  <section class="cta" id="comecar" aria-labelledby="cta-titulo">
+    <div class="cta__copy">
+      <h2 class="cta__line" id="cta-titulo" data-reveal>Comece seu PDF hoje</h2>
+      <p data-reveal style="--i:1">Escolha o plano, conclua o pagamento na Cakto e monte seu primeiro documento. Se não gostar, a garantia de 7 dias devolve seu dinheiro.</p>
+    </div>
+
+    <div class="dialog" data-ui data-reveal style="--i:2">
+      <p class="dialog__title">Assinar o DocFy</p>
+      <fieldset class="seg">
+        <legend class="sr-only">Escolha o plano</legend>
+        <label class="seg__opt">
+          <input type="radio" name="plano" value="mensal" data-href="https://pay.cakto.com.br/c2qqoes_1119576" data-label="Assinar mensal" data-sum="R$ 19,90 por mês. Cancele quando quiser.">
+          <span>Mensal<b>R$ 19,90</b></span>
+        </label>
+        <label class="seg__opt">
+          <input type="radio" name="plano" value="trimestral" checked data-href="https://pay.cakto.com.br/75ia2sn" data-label="Assinar trimestral" data-sum="R$ 37 a cada 3 meses, sai por R$ 12,33 por mês.">
+          <span>Trimestral<b>R$ 37</b></span>
+        </label>
+      </fieldset>
+      <p class="dialog__sum" id="cta-sum" aria-live="polite">R$ 37 a cada 3 meses, sai por R$ 12,33 por mês.</p>
+      <a class="button button--ink button--block" id="cta-buy" href="https://pay.cakto.com.br/75ia2sn">Assinar trimestral</a>
+      <noscript><p class="dialog__alt"><a class="link-plain" href="https://pay.cakto.com.br/c2qqoes_1119576">Prefere o mensal? Assinar mensal</a></p></noscript>
+      <p class="dialog__fine">7 dias de garantia. Pagamento pela Cakto.</p>
+    </div>
+  </section>
+</main>
+
+<!-- ============ RODAPÉ: o verso da folha ============ -->
+<footer class="footer">
+  <div class="footer__cols">
+    <div>
+      <p class="footer__first">DocFy</p>
+      <p>PDFs profissionais para freelancers, MEIs e quem busca emprego.</p>
+    </div>
+    <nav aria-label="Rodapé">
+      <p class="footer__first">Navegação</p>
+      <ul>
+        <li><a class="link" href="#modelos">Modelos</a></li>
+        <li><a class="link" href="#como-funciona">Como funciona</a></li>
+        <li><a class="link" href="#precos">Planos</a></li>
+        <li><a class="link" href="#duvidas">Dúvidas</a></li>
+      </ul>
+    </nav>
+    <div>
+      <p class="footer__first">Assinar</p>
+      <ul>
+        <li><a class="link" href="https://pay.cakto.com.br/c2qqoes_1119576">Mensal, R$ 19,90</a></li>
+        <li><a class="link" href="https://pay.cakto.com.br/75ia2sn">Trimestral, R$ 37</a></li>
       </ul>
     </div>
-  </div>
-</section>
-
-<!-- FEATURES -->
-<section class="max-w-6xl mx-auto px-6 py-20 border-t border-[var(--border)]">
-  <div class="reveal max-w-2xl mb-14">
-    <p class="eyebrow mb-3">o que vem incluso</p>
-    <h2 class="font-display font-bold text-3xl md:text-4xl leading-tight">Tudo que uma proposta precisa para parecer séria</h2>
-  </div>
-  <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
-    <div class="reveal fold-card p-6">
-      <h3 class="font-display font-semibold text-lg mb-2">8+ templates</h3>
-      <p class="text-[var(--muted)] text-sm">De minimalista a editorial, um estilo para cada tipo de cliente.</p>
-    </div>
-    <div class="reveal fold-card p-6">
-      <h3 class="font-display font-semibold text-lg mb-2">Sua marca</h3>
-      <p class="text-[var(--muted)] text-sm">Logo, cores e assinatura próprios em cada documento gerado.</p>
-    </div>
-    <div class="reveal fold-card p-6">
-      <h3 class="font-display font-semibold text-lg mb-2">Editor simples</h3>
-      <p class="text-[var(--muted)] text-sm">Markdown direto, sem curva de aprendizado de editor complexo.</p>
-    </div>
-    <div class="reveal fold-card p-6">
-      <h3 class="font-display font-semibold text-lg mb-2">Funciona no celular</h3>
-      <p class="text-[var(--muted)] text-sm">Edite e gere documentos de qualquer lugar, sem precisar do notebook.</p>
+    <div>
+      <p class="footer__first">Garantia</p>
+      <p>7 dias em qualquer plano. Pagamento seguro pela Cakto.</p>
     </div>
   </div>
-</section>
-
-<!-- NÚMEROS -->
-<section class="max-w-6xl mx-auto px-6 py-16 border-t border-[var(--border)]">
-  <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-    <div class="reveal">
-      <div class="stat-number" data-count="8">0</div>
-      <p class="text-[var(--muted)] text-sm font-mono mt-1">templates inclusos</p>
-    </div>
-    <div class="reveal">
-      <div class="stat-number" data-count="7">0</div>
-      <p class="text-[var(--muted)] text-sm font-mono mt-1">dias de garantia</p>
-    </div>
-    <div class="reveal">
-      <div class="stat-number" data-count="100" data-suffix="%">0%</div>
-      <p class="text-[var(--muted)] text-sm font-mono mt-1">em pdf, sem marca d'água</p>
-    </div>
-    <div class="reveal">
-      <div class="stat-number" data-count="5" data-suffix=" min">0 min</div>
-      <p class="text-[var(--muted)] text-sm font-mono mt-1">tempo médio por documento</p>
-    </div>
-  </div>
-</section>
-
-<!-- PREÇOS -->
-<section id="precos" class="max-w-6xl mx-auto px-6 py-20 border-t border-[var(--border)]">
-  <div class="reveal text-center max-w-xl mx-auto mb-14">
-    <p class="eyebrow mb-3">investimento</p>
-    <h2 class="font-display font-bold text-3xl md:text-4xl leading-tight mb-3">Preço de fundador: nunca mais tão barato</h2>
-    <p class="text-[var(--muted)]">Suporte direto liberado por tempo limitado para quem entra agora.</p>
-  </div>
-  <div class="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
-    <div class="reveal fold-card p-8">
-      <div class="eyebrow mb-2">mensal</div>
-      <div class="font-display font-bold text-4xl mb-1">R$19,90<span class="text-base text-[var(--muted)] font-normal">/mês</span></div>
-      <p class="text-[var(--muted)] text-sm mb-6">Flexível, cancele quando quiser</p>
-      <a href="https://pay.cakto.com.br/c2qqoes_1119576" class="block text-center border border-[var(--border)] hover:border-[var(--accent)] transition font-semibold py-3 rounded-full">Assinar mensal</a>
-    </div>
-    <div class="reveal relative">
-      <div class="absolute -top-3 right-6 z-10 bg-[var(--accent)] text-white text-[10px] font-mono font-bold px-3 py-1 rounded-full shadow-[0_4px_12px_rgba(0,113,227,0.5)]">MAIS ESCOLHIDO</div>
-      <div class="fold-card price-highlight p-8">
-        <div class="eyebrow mb-2">trimestral</div>
-        <div class="font-display font-bold text-4xl mb-1">R$37<span class="text-base text-[var(--muted)] font-normal">/trimestre</span></div>
-        <p class="text-[var(--muted)] text-sm mb-6">Economize comparado ao mensal</p>
-        <a href="https://pay.cakto.com.br/75ia2sn" class="block text-center btn-primary text-white font-semibold py-3 rounded-full">Assinar trimestral</a>
-      </div>
-    </div>
-  </div>
-  <div class="reveal flex flex-wrap justify-center gap-x-8 gap-y-3 mt-10 text-sm text-[var(--muted)] font-mono">
-    <span>✓ Garantia de 7 dias</span>
-    <span>✓ Acesso direto ao criador</span>
-    <span>✓ Novos templates liberados primeiro</span>
-    <span>✓ Cancele quando quiser</span>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="max-w-3xl mx-auto px-6 py-20 border-t border-[var(--border)]">
-  <div class="reveal mb-10">
-    <p class="eyebrow mb-3">dúvidas</p>
-    <h2 class="font-display font-bold text-3xl leading-tight">Perguntas frequentes</h2>
-  </div>
-  <div class="space-y-3">
-    <details class="reveal fold-card p-5">
-      <summary class="flex justify-between items-center font-medium">
-        Preciso saber design ou usar programas complicados?
-        <span class="chev text-[var(--accent-light)] text-xl leading-none">+</span>
-      </summary>
-      <p class="text-[var(--muted)] text-sm mt-3">Não. Você escolhe um template já pronto e escreve o conteúdo em texto simples, e o DocFy cuida de toda a parte visual.</p>
-    </details>
-    <details class="reveal fold-card p-5">
-      <summary class="flex justify-between items-center font-medium">
-        Funciona no celular também?
-        <span class="chev text-[var(--accent-light)] text-xl leading-none">+</span>
-      </summary>
-      <p class="text-[var(--muted)] text-sm mt-3">Sim, o DocFy é responsivo e funciona direto do navegador, no computador ou no celular.</p>
-    </details>
-    <details class="reveal fold-card p-5">
-      <summary class="flex justify-between items-center font-medium">
-        Posso cancelar quando quiser?
-        <span class="chev text-[var(--accent-light)] text-xl leading-none">+</span>
-      </summary>
-      <p class="text-[var(--muted)] text-sm mt-3">Sim, sem burocracia. E você ainda tem 7 dias de garantia após a compra, sem perguntas.</p>
-    </details>
-    <details class="reveal fold-card p-5">
-      <summary class="flex justify-between items-center font-medium">
-        Quantos documentos posso gerar?
-        <span class="chev text-[var(--accent-light)] text-xl leading-none">+</span>
-      </summary>
-      <p class="text-[var(--muted)] text-sm mt-3">Sem limite artificial: gere quantas propostas, relatórios e materiais precisar durante sua assinatura.</p>
-    </details>
-    <details class="reveal fold-card p-5">
-      <summary class="flex justify-between items-center font-medium">
-        Como funciona o suporte?
-        <span class="chev text-[var(--accent-light)] text-xl leading-none">+</span>
-      </summary>
-      <p class="text-[var(--muted)] text-sm mt-3">Quem assina agora tem acesso direto ao criador do DocFy para tirar dúvidas e sugerir melhorias.</p>
-    </details>
-  </div>
-</section>
-
-<!-- CTA FINAL -->
-<section class="relative overflow-hidden border-t border-[var(--border)]">
-  <div class="glow-radial absolute inset-0"></div>
-  <div class="max-w-3xl mx-auto px-6 py-24 text-center relative reveal">
-    <h2 class="font-display font-bold text-3xl md:text-4xl leading-tight mb-5">
-      Seu próximo documento pode ser<br>o primeiro que parece profissional.
-    </h2>
-    <p class="text-[var(--muted)] text-lg mb-8">Comece agora, com garantia de 7 dias.</p>
-    <a href="#precos" class="btn-primary inline-block text-white font-semibold px-8 py-4 rounded-full">Criar meu primeiro documento</a>
-  </div>
-</section>
-
-<footer class="max-w-6xl mx-auto px-6 py-10 border-t border-[var(--border)] flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-[var(--muted)]">
-  <div class="flex items-center gap-2">
-    <span class="font-display font-semibold">Doc<span class="text-[var(--accent)]">Fy</span></span>
-  </div>
-  <p>© 2026 DocFy. Todos os direitos reservados.</p>
+  <p class="footer__mark" translate="no" aria-hidden="true">DocFy</p>
+  <p class="footer__legal">© 2026 DocFy. Todos os direitos reservados.</p>
 </footer>
 
-<script>
-  const els = document.querySelectorAll('.reveal');
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
-  }, { threshold: 0.12 });
-  els.forEach(el => obs.observe(el));
+<!-- Barra de compra no celular: aparece depois do topo e some perto dos planos -->
+<div class="buybar" id="buybar" aria-hidden="true">
+  <p class="buybar__price">A partir de <b>R$&nbsp;19,90</b>/mês</p>
+  <a class="button" href="#precos" tabindex="-1">Começar agora</a>
+</div>
 
-  // Scroll progress bar
-  const progressBar = document.getElementById('scroll-progress');
-  function updateProgress(){
-    const h = document.documentElement;
-    const scrolled = h.scrollHeight > h.clientHeight
-      ? (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100
-      : 0;
-    progressBar.style.width = scrolled + '%';
-  }
-  window.addEventListener('scroll', updateProgress, { passive: true });
-  updateProgress();
-
-  // Animated counters
-  const counters = document.querySelectorAll('.stat-number');
-  const counterObs = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      const el = entry.target;
-      const target = parseFloat(el.dataset.count);
-      const suffix = el.dataset.suffix || '';
-      const duration = 1200;
-      const start = performance.now();
-      function tick(now){
-        const p = Math.min((now - start) / duration, 1);
-        el.textContent = Math.floor(p * target) + suffix;
-        if (p < 1) requestAnimationFrame(tick);
-      }
-      requestAnimationFrame(tick);
-      counterObs.unobserve(el);
-    });
-  }, { threshold: 0.4 });
-  counters.forEach((c) => counterObs.observe(c));
-
-  // Cursor-driven effects (tilt, spotlight, parallax) — skipped for reduced-motion users
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!reduceMotion) {
-    document.querySelectorAll('.tilt-card').forEach((card) => {
-      card.addEventListener('mousemove', (e) => {
-        const r = card.getBoundingClientRect();
-        const x = (e.clientX - r.left) / r.width - 0.5;
-        const y = (e.clientY - r.top) / r.height - 0.5;
-        card.style.transform = `rotateX(${(-y * 10).toFixed(2)}deg) rotateY(${(x * 10).toFixed(2)}deg)`;
-      });
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = 'rotateX(0deg) rotateY(0deg)';
-      });
-    });
-
-    const heroZone = document.querySelector('.spotlight-zone');
-    const spotlight = document.querySelector('.spotlight');
-    if (heroZone && spotlight) {
-      heroZone.addEventListener('mousemove', (e) => {
-        const r = heroZone.getBoundingClientRect();
-        spotlight.style.setProperty('--x', ((e.clientX - r.left) / r.width * 100) + '%');
-        spotlight.style.setProperty('--y', ((e.clientY - r.top) / r.height * 100) + '%');
-      });
-    }
-
-    const parallaxSection = document.querySelector('.grid-lines');
-    window.addEventListener('scroll', () => {
-      if (parallaxSection) parallaxSection.style.backgroundPosition = `0 ${window.scrollY * 0.15}px`;
-    }, { passive: true });
-  }
-</script>
-
+<script src="js/main.js" defer></script>
 </body>
 </html>
